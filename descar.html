@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bec7d3",
+                    "on-secondary-container": "#566475",
+                    "outline": "#6f7882",
+                    "background": "#f7f9fb",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d8dadc",
+                    "surface-bright": "#f7f9fb",
+                    "tertiary-container": "#929ba3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#1da1f2",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#d6e4f9",
+                    "inverse-surface": "#2d3133",
+                    "on-surface-variant": "#3f4851",
+                    "surface-container": "#eceef0",
+                    "tertiary": "#575f67",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#dbe4ed",
+                    "on-primary-fixed": "#001d32",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "secondary-container": "#d3e1f6",
+                    "surface": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#3a4859",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-fixed-dim": "#95ccff",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "on-primary-fixed-variant": "#004a75",
+                    "inverse-primary": "#95ccff",
+                    "surface-tint": "#1da1f2",
+                    "on-surface": "#191c1e",
+                    "on-primary-container": "#003554",
+                    "primary-fixed": "#cde5ff",
+                    "on-secondary-fixed": "#0f1c2c",
+                    "on-tertiary-container": "#2a333a",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#bfc8d0",
+                    "on-tertiary-fixed": "#141d23",
+                    "secondary": "#525f71",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container-low": "#f2f4f6",
+                    "primary": "#1da1f2",
+                    "secondary-fixed-dim": "#bac8dc",
+                    "error": "#ba1a1a",
+                    "brand-orange": "#ff5722"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "1rem",
+                    "container-margin": "1rem",
+                    "inline-gutter": "1rem",
+                    "section-padding": "1.5rem",
+                    "stack-gap": "0.75rem"
+            },
+            "fontFamily": {
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "title-sm": ["Plus Jakarta Sans"],
+                    "label-bold": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "title-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-bold": ["11px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "letterSpacing": "0px", "fontWeight": "400"}],
+                    "display-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-sm": ["12px", {"lineHeight": "18px", "letterSpacing": "0px", "fontWeight": "400"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .news-shadow {
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.05);
+        }
+        .active-nav-glow {
+            filter: drop-shadow(0 0 8px rgba(29, 161, 242, 0.4));
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Drawer animation support */
+        .drawer-open #side-drawer {
+            transform: translateX(0);
+        }
+        .drawer-open #drawer-backdrop {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- Navigation Drawer -->
+<div class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300" id="drawer-backdrop" onclick="toggleDrawer()"></div>
+<aside class="fixed top-0 left-0 h-full w-[280px] bg-surface-container-lowest z-[70] -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col" id="side-drawer">
+<div class="p-6 border-b border-outline-variant flex items-center justify-between bg-primary-container/10">
+<h2 class="text-display-lg font-display-lg text-primary tracking-tighter">Descargas</h2>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors" onclick="toggleDrawer()">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto p-4 space-y-2">
+<a class="flex items-center gap-4 p-4 rounded-xl text-primary font-title-sm bg-primary/10 transition-colors" href="index.html">
+<span class="material-symbols-outlined">home</span>
+            Inicio
+        </a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">sports_esports</span>
+            Torneos
+        </a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+            Comunidad
+        </a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+            Ranking
+        </a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+            Mi Perfil
+        </a>
+</nav>
+<div class="p-4 border-t border-outline-variant">
+<button class="w-full flex items-center justify-center gap-2 p-3 text-error font-title-sm hover:bg-error-container/20 rounded-lg transition-colors" onclick="toggleDrawer()">
+<span class="material-symbols-outlined">logout</span>
+            Cerrar
+        </button>
+</div>
+</aside>
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant">
+<div class="flex items-center justify-between px-container-margin h-16 w-full max-w-screen-xl mx-auto">
+<button class="active:scale-95 transition-transform duration-200 hover:bg-surface-container-low p-2 rounded-full" onclick="toggleDrawer()">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="text-display-lg font-display-lg text-primary tracking-tighter">Descargas Juegos</h1>
+<button class="active:scale-95 transition-transform duration-200 hover:bg-surface-container-low p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+</div>
+</header>
+
+
+
+
+
+
+
+
+
+
+<main class="pt-20 pb-24 px-container-margin max-w-screen-md mx-auto">
+<!-- Search Bar Section -->
+<div class="mb-lg">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border border-border-subtle rounded-xl font-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm" placeholder="Search APKs, Mods, or OBB..." type="text"/>
+</div>
+</div>
+<!-- Featured APKs Section -->
+<section class="mb-xl">
+<div class="flex justify-between items-end mb-sm">
+<h2 class="font-title-lg text-title-lg text-text-primary">Featured Downloads</h2>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar snap-x pb-4">
+<!-- Game Card 1 -->
+<div class="snap-start flex-shrink-0 w-48 bg-surface-card border border-border-subtle rounded-xl p-4 transition-all hover:border-primary-container hover:shadow-md">
+<div class="w-16 h-16 mb-sm rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A high-quality 3D mobile game icon for a futuristic racing game, featuring a sleek neon-blue car helmet on a dark carbon fiber background. The lighting is crisp and cinematic with sharp blue highlights. The visual style is clean, corporate, and professional, following a premium tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzDojIWwYskwVczHeWYzEX7wPfk97Kq-k5r-iTOMW4eyWfo2igfbjuJI9waJvCUgGOCb1qBRKNqSH4WHbtJDEPMJ-Uwv3zniOqHCKYCDR1wDtdrG1ckBVtSVua7CMzHWMYJwWAXw_RnpQ7oNr3Hh9895vzF4bCC2TzBvWR2CWEhvFY38szmo3yscnEJR4uOU3MaOaD8dVOutDv2MQJ_BpX7irD8tAMUJBYviKCPIFMwXn3RmMNuU-Wskt4hCII9abfHPrfPwSa7ybc"/>
+</div>
+<h3 class="font-title-lg text-title-lg truncate mb-1">Cyber Drift</h3>
+<div class="flex items-center gap-1 mb-3">
+<span class="material-symbols-outlined text-tertiary scale-75" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Verified Clean</span>
+</div>
+<div class="flex justify-between items-center text-label-sm text-text-secondary mb-3">
+<span>v2.4.1</span>
+<span>142MB</span>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-sm active:scale-95 transition-transform flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                        Get APK
+                    </button>
+</div>
+<!-- Game Card 2 -->
+<div class="snap-start flex-shrink-0 w-48 bg-surface-card border border-border-subtle rounded-xl p-4 transition-all hover:border-primary-container hover:shadow-md">
+<div class="w-16 h-16 mb-sm rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A minimalist game icon for a fantasy RPG, showing a glowing golden sword emblem centered on a deep forest green background. The style is modern and professional with a slight metallic texture on the sword. Lighting is focused and directional to create depth, fitting a high-end mobile portal design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWjs7hE4IY5x5cE7h4mvkYB7YsvBonp6zSH8AUvs4hrr7vjy5SRcO6IXomuB_ZbtpCSphD1Rth6R3WJq58EYw_bxYVLxQcwSu2Q-jnjVSHhSnW_s3OxssbkFUoHxiMqTSUNhtjyrY2c5dABPUl0_govzsGX1HAS61NmdSSQYOPiwxLlBkSWem-cdKRJ5zgaEDu2SlFZS4UiSVp3f3kf1ygwTRjRixSve5eY_SmQi3X9r7Z-ivYvQh6MmgUJzpeHm-KSEMWp7GDU2Ny"/>
+</div>
+<h3 class="font-title-lg text-title-lg truncate mb-1">Eldoria M</h3>
+<div class="flex items-center gap-1 mb-3">
+<span class="material-symbols-outlined text-tertiary scale-75" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Verified Clean</span>
+</div>
+<div class="flex justify-between items-center text-label-sm text-text-secondary mb-3">
+<span>v1.0.5</span>
+<span>1.2GB</span>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-sm active:scale-95 transition-transform flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                        Get APK
+                    </button>
+</div>
+<!-- Game Card 3 -->
+<div class="snap-start flex-shrink-0 w-48 bg-surface-card border border-border-subtle rounded-xl p-4 transition-all hover:border-primary-container hover:shadow-md">
+<div class="w-16 h-16 mb-sm rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="An illustrative game icon for a mobile puzzle strategy game, depicting a glowing blue crystalline brain silhouette on a clean light gray background. The lighting is soft and ambient with a high-key modern feel. The aesthetic is extremely professional, using a restricted palette of primary portal blue and neutral grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-UOnqznNJ2GameCvFH4fgS3Jue792jk1GhKCrBiDmTQmf_0wxM6Y6O7I2reRBCOzM2Df35C0VRaXgop2jSMKMAmcHNMjRD0BJ6RKA_V39cFDo7BNwyClg2oUA_jmZrzidKHOqyswfzM_vWXWVDWaFyZ6IWZXNR8lvPYYkPRnQAM3Lz53Kk1JXcMbsU-ZOpdUooGLZR7uG014fKNXookMPODi1XnVzBUd4CgrSjauHNSWQOCtn3BQR60ZlVNPgHlzYEw3G3ypcUGv4"/>
+</div>
+<h3 class="font-title-lg text-title-lg truncate mb-1">Mind Tactics</h3>
+<div class="flex items-center gap-1 mb-3">
+<span class="material-symbols-outlined text-tertiary scale-75" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Verified Clean</span>
+</div>
+<div class="flex justify-between items-center text-label-sm text-text-secondary mb-3">
+<span>v5.2.0</span>
+<span>85MB</span>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-sm active:scale-95 transition-transform flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                        Get APK
+                    </button>
+</div>
+</div>
+</section>
+<!-- Categories / Tabs -->
+<section class="mb-lg">
+<div class="flex gap-2 overflow-x-auto hide-scrollbar">
+<button class="px-5 py-2 bg-primary text-on-primary rounded-full font-label-sm whitespace-nowrap">All Recent</button>
+<button class="px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm whitespace-nowrap hover:bg-surface-dim transition-colors">Action</button>
+<button class="px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm whitespace-nowrap hover:bg-surface-dim transition-colors">RPG</button>
+<button class="px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm whitespace-nowrap hover:bg-surface-dim transition-colors">Strategy</button>
+<button class="px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm whitespace-nowrap hover:bg-surface-dim transition-colors">Shooter</button>
+</div>
+</section>
+<!-- Recent Uploads List -->
+<section class="space-y-3">
+<h2 class="font-title-lg text-title-lg text-text-primary mb-sm">Recent Uploads</h2>
+
+<!-- List Item 1 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl p-3 flex items-center gap-4 hover:shadow-sm transition-shadow">
+<div class="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A vibrant game logo for an arcade action game featuring a stylized lightning bolt in neon yellow against a dark navy blue background. The lighting is punchy and high-contrast, designed to pop on a light-mode mobile forum UI. Professional corporate tech-forward design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQxZEjWKSqsK-n1uhRFbJX3eRos0d8efdxNvfvJtJ7lgn5BWztfgLB7YWVg81--wnSUAqiC5wyfbtuPSC6coI51TmDsJkVMAcyLAPQsjpiFYo5o6tXL87-XUGasRu6GXbX0wXZwokhDm1ITIDwCnPrgkdCmND-VTEmVJGfoO8Q3Ipq7u20UwFVYY24vGa8v9xMMEAefhJ4Uw_QeBNMxhsosl8dzB4zhKD9kH5E9igwlhXyIozRFpXGpZsFPjx4CHJNZL0s9yA1Qdgz"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-title-lg text-body-lg truncate leading-tight">Nitro Blast Arcade</h4>
+<p class="font-label-sm text-text-secondary">Action • v1.8.2 • 210MB</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">Verified</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+<!-- List Item 2 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl p-3 flex items-center gap-4 hover:shadow-sm transition-shadow">
+<div class="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A stylized shield icon for a medieval mobile strategy game, featuring intricate silver filigree on a light sky-blue background. The style is clean, modern, and high-tech, avoiding clutter. Lighting creates a subtle metallic shimmer on the shield edges, emphasizing premium production quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNG7IiGUZDggObHV1OZlgYiToaw5kaIYIutG-e-QZVl0ZdOUcsoIU_WEqkaTacutKSoN9byEfXqJwqalEK1dJG2FRLyW3u9AoCsq5xQPUk88ZtcSMAnqjBHoi5-7Z-5TwuL1eXMvAYCY0kTj4QyEoMGz-pAkymOC7n3F_sBmfxys6ZnLBa2lKnOfY9UwqfXPA1sNZ1heyP0jiVXlzV3WdJvei0nvGcVKEDDplU0B0557dMN7zwEgd1b4dV4XXDJdB2hfDk5rXzzc5j"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-title-lg text-body-lg truncate leading-tight">Kingdom Clash: Remastered</h4>
+<p class="font-label-sm text-text-secondary">Strategy • v3.0.1 • 450MB</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">Verified</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+<!-- List Item 3 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl p-3 flex items-center gap-4 hover:shadow-sm transition-shadow">
+<div class="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A pixel-art style icon for a retro-themed platformer game, showing a small red character in a jump pose on a clean white background. Despite the pixel art, the presentation is modern, sharp, and corporate, fitting into a professional game portal layout. Lighting is flat and uniform for high legibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIUKAXOz7SckPpGL17U_03ofl08ByaCIXGMxOz7oUJ3vOIYYZ3UMdI_fFnbBXng_K_N7C9ttYll3k0VGTX0sMTksSpTRsz75BRCAkONVdmEgVduud5gA5EgZKGFguGBKyTJsyJnaMZgFgaaCBYYNk7o0HzR5VWDzkQba4mCdCQDq2RRp6wsTs27XrTc9R2a8lCgB_iRlrC4T9kxT0HL38ENnpHG-Tjdxm5N3I3TmceGf4Cat0ZS4ylYn5P_EmapZXO9t7O_YIlx0wo"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-title-lg text-body-lg truncate leading-tight">Pixel Quest Pro</h4>
+<p class="font-label-sm text-text-secondary">Arcade • v0.9b • 45MB</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">Verified</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+<!-- List Item 1 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl p-3 flex items-center gap-4 hover:shadow-sm transition-shadow">
+<div class="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A vibrant game logo for an arcade action game featuring a stylized lightning bolt in neon yellow against a dark navy blue background. The lighting is punchy and high-contrast, designed to pop on a light-mode mobile forum UI. Professional corporate tech-forward design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQxZEjWKSqsK-n1uhRFbJX3eRos0d8efdxNvfvJtJ7lgn5BWztfgLB7YWVg81--wnSUAqiC5wyfbtuPSC6coI51TmDsJkVMAcyLAPQsjpiFYo5o6tXL87-XUGasRu6GXbX0wXZwokhDm1ITIDwCnPrgkdCmND-VTEmVJGfoO8Q3Ipq7u20UwFVYY24vGa8v9xMMEAefhJ4Uw_QeBNMxhsosl8dzB4zhKD9kH5E9igwlhXyIozRFpXGpZsFPjx4CHJNZL0s9yA1Qdgz"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-title-lg text-body-lg truncate leading-tight">Nitro Blast Arcade</h4>
+<p class="font-label-sm text-text-secondary">Action • v1.8.2 • 210MB</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">Verified</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+<!-- List Item 2 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl p-3 flex items-center gap-4 hover:shadow-sm transition-shadow">
+<div class="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A stylized shield icon for a medieval mobile strategy game, featuring intricate silver filigree on a light sky-blue background. The style is clean, modern, and high-tech, avoiding clutter. Lighting creates a subtle metallic shimmer on the shield edges, emphasizing premium production quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNG7IiGUZDggObHV1OZlgYiToaw5kaIYIutG-e-QZVl0ZdOUcsoIU_WEqkaTacutKSoN9byEfXqJwqalEK1dJG2FRLyW3u9AoCsq5xQPUk88ZtcSMAnqjBHoi5-7Z-5TwuL1eXMvAYCY0kTj4QyEoMGz-pAkymOC7n3F_sBmfxys6ZnLBa2lKnOfY9UwqfXPA1sNZ1heyP0jiVXlzV3WdJvei0nvGcVKEDDplU0B0557dMN7zwEgd1b4dV4XXDJdB2hfDk5rXzzc5j"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-title-lg text-body-lg truncate leading-tight">Kingdom Clash: Remastered</h4>
+<p class="font-label-sm text-text-secondary">Strategy • v3.0.1 • 450MB</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">Verified</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+<!-- List Item 3 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl p-3 flex items-center gap-4 hover:shadow-sm transition-shadow">
+<div class="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A pixel-art style icon for a retro-themed platformer game, showing a small red character in a jump pose on a clean white background. Despite the pixel art, the presentation is modern, sharp, and corporate, fitting into a professional game portal layout. Lighting is flat and uniform for high legibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIUKAXOz7SckPpGL17U_03ofl08ByaCIXGMxOz7oUJ3vOIYYZ3UMdI_fFnbBXng_K_N7C9ttYll3k0VGTX0sMTksSpTRsz75BRCAkONVdmEgVduud5gA5EgZKGFguGBKyTJsyJnaMZgFgaaCBYYNk7o0HzR5VWDzkQba4mCdCQDq2RRp6wsTs27XrTc9R2a8lCgB_iRlrC4T9kxT0HL38ENnpHG-Tjdxm5N3I3TmceGf4Cat0ZS4ylYn5P_EmapZXO9t7O_YIlx0wo"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-title-lg text-body-lg truncate leading-tight">Pixel Quest Pro</h4>
+<p class="font-label-sm text-text-secondary">Arcade • v0.9b • 45MB</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">Verified</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function toggleDrawer() {
+        document.body.classList.toggle('overflow-hidden');
+        document.body.classList.toggle('drawer-open');
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 20) {
+            header.classList.add('shadow-md');
+        } else {
+            header.classList.remove('shadow-md');
+        }
+    });
+</script>
+</body></html>
