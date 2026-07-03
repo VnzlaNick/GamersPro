@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bec7d3",
+                    "on-secondary-container": "#566475",
+                    "outline": "#6f7882",
+                    "background": "#f7f9fb",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d8dadc",
+                    "surface-bright": "#f7f9fb",
+                    "tertiary-container": "#929ba3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#1da1f2",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#d6e4f9",
+                    "inverse-surface": "#2d3133",
+                    "on-surface-variant": "#3f4851",
+                    "surface-container": "#eceef0",
+                    "tertiary": "#575f67",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#dbe4ed",
+                    "on-primary-fixed": "#001d32",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "secondary-container": "#d3e1f6",
+                    "surface": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#3a4859",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-fixed-dim": "#95ccff",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "on-primary-fixed-variant": "#004a75",
+                    "inverse-primary": "#95ccff",
+                    "surface-tint": "#1da1f2",
+                    "on-surface": "#191c1e",
+                    "on-primary-container": "#003554",
+                    "primary-fixed": "#cde5ff",
+                    "on-secondary-fixed": "#0f1c2c",
+                    "on-tertiary-container": "#2a333a",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#bfc8d0",
+                    "on-tertiary-fixed": "#141d23",
+                    "secondary": "#525f71",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container-low": "#f2f4f6",
+                    "primary": "#1da1f2",
+                    "secondary-fixed-dim": "#bac8dc",
+                    "error": "#ba1a1a",
+                    "brand-orange": "#ff5722"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "1rem",
+                    "container-margin": "1rem",
+                    "inline-gutter": "1rem",
+                    "section-padding": "1.5rem",
+                    "stack-gap": "0.75rem"
+            },
+            "fontFamily": {
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "title-sm": ["Plus Jakarta Sans"],
+                    "label-bold": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "title-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-bold": ["11px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "letterSpacing": "0px", "fontWeight": "400"}],
+                    "display-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-sm": ["12px", {"lineHeight": "18px", "letterSpacing": "0px", "fontWeight": "400"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .news-shadow {
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.05);
+        }
+        .active-nav-glow {
+            filter: drop-shadow(0 0 8px rgba(29, 161, 242, 0.4));
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Drawer animation support */
+        .drawer-open #side-drawer {
+            transform: translateX(0);
+        }
+        .drawer-open #drawer-backdrop {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Hero Section -->
+<section class="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+<img alt="Rakion Hero" class="w-full h-full object-cover" src="https://i.wpfc.ml/jj/wun3zs.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full md:px-margin-desktop pb-8 px-8">
+<h1 class="font-headline-xl text-headline-xl text-primary drop-shadow-sm mb-2">Rakion: Chaos Force</h1>
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-container/20 backdrop-blur-md px-3 py-1 rounded-full text-on-secondary-container font-label-md text-label-md border border-secondary-container/30">Action RPG</span>
+<span class="bg-secondary-container/20 backdrop-blur-md px-3 py-1 rounded-full text-on-secondary-container font-label-md text-label-md border border-secondary-container/30">Multiplayer</span>
+</div>
+</div>
+</section>
+<br>
+<div class="md:px-margin-desktop py-md px-8">
+<!-- Stats & Download Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<!-- Stats Row -->
+<div class="md:col-span-8 glass-panel rounded-xl p-md flex justify-between items-center text-center shadow-sm">
+<div class="flex flex-col">
+<div class="flex items-center justify-center gap-1 text-primary">
+<span class="font-headline-md text-headline-md">4.8</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Rating</span>
+</div>
+<div class="w-[1px] h-10 bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary">842 MB</span>
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Size</span>
+</div>
+<div class="w-[1px] h-10 bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary">12.5k</span>
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Downloads</span>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="md:col-span-9 h-20">
+<button class="w-full h-full bg-primary-container hover:bg-primary text-on-primary py-md px-lg rounded-xl font-headline-md text-headline-md shadow-lg shadow-primary-container/20 transition-all active:scale-95 flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">download</span>
+                        DESCARGAR AHORA
+                    </button>
+</div>
+</div>
+<!-- Bento Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mt-gutter">
+<br>
+<!-- About Section (Large) -->
+<div class="lg:col-span-2 glass-panel rounded-xl p-md shadow-sm">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">info</span>
+<h3 class="font-headline-md text-headline-md text-primary">Sobre Rakion</h3>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Rakion es un juego de acción frenético centrado en combates de estrategia y equipo. Elige tu clase, domina tus habilidades y únete a la batalla en una experiencia PvP sin igual que combina elementos de RPG clásico con un combate dinámico en tiempo real.
+                    </p>
+                    <br>
+<div class="mt-md grid grid-cols-2 sm:grid-cols-4 gap-sm">
+<div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined block text-primary mb-1">swords</span>
+<span class="font-label-md text-label-md">Combat</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined block text-primary mb-1">strategy</span>
+<span class="font-label-md text-label-md">Strategy</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined block text-primary mb-1">groups</span>
+<span class="font-label-md text-label-md">Guilds</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined block text-primary mb-1">shield</span>
+<span class="font-label-md text-label-md">Defense</span>
+</div>
+</div>
+</div>
+<br>
+<!-- Community / Social Sidebar -->
+<div class="lg:col-span-1 flex flex-col gap-gutter">
+<div class="glass-panel rounded-xl p-md shadow-sm h-full">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">forum</span>
+<h3 class="font-headline-md text-headline-md text-primary">Foro Social</h3>
+</div>
+<span class="text-primary font-label-bold text-label-bold cursor-pointer hover:underline">Ver todo</span>
+</div>
+<div class="space-y-4">
+<!-- Forum Post 1 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/20 hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-xs">M</div>
+<span class="font-label-md text-label-md text-on-surface">MageMaster88</span>
+<span class="text-[10px] text-outline ml-auto">2h ago</span>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary group-hover:text-secondary transition-colors">¿Mejor build para Warrior en 2024?</h4>
+<p class="text-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">Busco consejos para optimizar mi equipo para las Guerras de Clanes...</p>
+</div>
+<!-- Forum Post 2 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/20 hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold text-xs">A</div>
+<span class="font-label-md text-label-md text-on-surface">ArchiX</span>
+<span class="text-[10px] text-outline ml-auto">5h ago</span>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary group-hover:text-secondary transition-colors">Bug report: Glitch en el mapa Desierto</h4>
+<p class="text-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">He notado un error visual al usar la transformación de Cell...</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<!-- Media Gallery (Visual Flourish) -->
+<div class="mt-gutter">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">photo_library</span>
+<h3 class="font-headline-md text-headline-md text-primary">Galería de Combate</h3>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[200px] md:h-[300px]">
+<div class="rounded-xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="A cinematic action shot from Rakion: Chaos Force showing a powerful warrior class character in futuristic armor swinging a massive glowing sword against a group of enemies. The lighting is intense with cyan sparks flying and a bright high-tech arena background in a modern light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUimx90v9cHZ7AClA9nihna5bWUaxrwshSNhk8MJbi6icnXYk_TfeEnmC-pDfAiEeFlZi8JZTX5t_Yy6hazFNvrFwFU9mFPwk70GeOjb6UvAHoWFzSh2lu1P_YMzJL8z9VIhaQw77-S994vpFMOjFClpd3iinymh6lvP9bwBUqrHEHhJRhEHFknesFlOe-8LHGDMRQP0gkF9I2GP7s0d4owXD7eYjb-SDFknujtYJzMzOe5Qy4XyRA4w"/>
+</div>
+<div class="rounded-xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="In-game screenshot of a Rakion mage character casting a massive blizzard spell. Bright white and cyan crystalline effects fill the screen against a clean, light-colored fantasy architecture backdrop. High clarity UI elements are visible in the corners of the screen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0feSrgpBTGhQ6eOGSLWeZcVZSNp2VODN4oZeFCvG3ssIqIHZ7QhoHhA3v5yQsUkx5w6w7edssz-J32-jqvJF6QbMctzpJt6T0kq_8yvlYsD16lfXHJZI9w7uc6pN82_o1epO2QzY4xIx-_H9lXA2kFNLfiEHGJ-CsKixlj5gL8abRdqa_iAAWpVBwp34WA57GWedw2deDs2Bo0os-Kl-fMJrPpZPxwXmD-IsmU62LEH--f42UoFtIGw"/>
+</div>
+<div class="rounded-xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform duration-300 hidden md:block">
+<img class="w-full h-full object-cover" data-alt="Dynamic shot of a ninja-like character performing a mid-air dash in Rakion. Motion blur streaks of light cyan follow the character through a sun-drenched stone temple environment. The scene is bright and airy with high-key lighting consistent with the Nexus Velocity style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Ub1Ib1md1lV4oD2rqG0cTX5Ic6H1uSKDdJBb2tPevrjZaY6uBVzks4O1yhJB31cXx8Imm7MyBW57pKLq9W1d00-e6lbgag3Hegktf3L4fafNxejeRKcxkUSX9VMVTm-xA9VW3KrP27CxpBIWYFE2774Psq4r38OdJB6XM5MhUZGRZhZ8PeVD0ahaK6f7gJVvMc4DWWFQ4vIi3eAv0b6mptuWKu0b-Maa8-762EQZrAW9X7lh3aRGvA"/>
+</div>
+<div class="rounded-xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform duration-300 hidden md:block">
+<img class="w-full h-full object-cover" data-alt="A strategic map overview in Rakion: Chaos Force showing various capture points glowing with holographic light. The environment is a clean, metallic sky-city with bright blue skies and white clouds. Sophisticated geometric shapes frame the tactical display." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyjtdCqn5C2y9iIySDIz4OWjXELmNOnzgP0Mjm_TJegrobKlPx8L0RUFYV_oyWz_m4ZAUSQznqo6Axm_lJckQJ_rGxUg5Flk7yh37CIENdGtN69kRoiVcEvYPIlEKpQoBUIy7pynQjHs_QAWP1Qr1-V6PzzHyfpHob0OL51AkxB-S52h--Z51iWKxWn1oSrTQMPiP16HfNklouUepX0jzZ40dFjBC09KQp3PTKWWRTTv5e7yArk-S1MA"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-blue backdrop-blur-md border-t border-poral-border px-4 py-1 flex justify-between items-center z-[80] pb-2">
+
+<a class="flex flex-col items-center gap-1 text-text-dim hover:text-primary transition-colors active:scale-90 duration-200" href="index.html">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-[8px] uppercase font-bold">Inicio</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-status-new font-bold drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] active:scale-90 duration-200" href="foros.html">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-caps text-[8px] uppercase">Foros</span>
+</a>
+
+  <!-- FAB -->
+
+    <div class="bg-portal-blue w-14 h-14 rounded-full -mt-12 flex items-center justify-center shadow-lg border-4 border-portal-bg">
+     <a class="fixed bottom-6 right-margin-mobile w-14 h-14 bg-brand-blue rounded-full shadow-lg shadow-brand-blue/30 flex items-center justify-center text-white active:scale-90 duration-150 z-50 transition-transform" href="post.html"> <span class="material-symbols-outlined text-[32px] font-bold" data-icon="add">add</span> </a>
+    </div>
+   </div>
+
+
+<a class="flex flex-col items-center gap-1 text-text-dim hover:text-primary transition-colors active:scale-90 duration-200" href="rangos.html">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-caps text-[8px] uppercase">Rangos</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-text-dim hover:text-primary transition-colors active:scale-90 duration-200" href="perfil.html">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[8px] uppercase">Perfil</span>
+</a>
+</nav>
+
+
+
+
+
+
+
+<script>
+    function toggleDrawer() {
+        document.body.classList.toggle('overflow-hidden');
+        document.body.classList.toggle('drawer-open');
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 20) {
+            header.classList.add('shadow-md');
+        } else {
+            header.classList.remove('shadow-md');
+        }
+    });
+</script>
+</body></html>
