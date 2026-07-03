@@ -123,64 +123,24 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
-<!-- Navigation Drawer -->
-<div class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300" id="drawer-backdrop" onclick="toggleDrawer()"></div>
-<aside class="fixed top-0 left-0 h-full w-[280px] bg-surface-container-lowest z-[70] -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col" id="side-drawer">
-<div class="p-6 border-b border-outline-variant flex items-center justify-between bg-primary-container/10">
-<h2 class="text-display-lg font-display-lg text-primary tracking-tighter">Rakion</h2>
-<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors" onclick="toggleDrawer()">
-<span class="material-symbols-outlined text-on-surface-variant">close</span>
-</button>
-</div>
-<nav class="flex-1 overflow-y-auto p-4 space-y-2">
-<a class="flex items-center gap-4 p-4 rounded-xl text-primary font-title-sm bg-primary/10 transition-colors" href="index.html">
-<span class="material-symbols-outlined">newspaper</span>
-            Inicio
-        </a>
-<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
-<span class="material-symbols-outlined">sports_esports</span>
-            Torneos
-        </a>
-<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
-<span class="material-symbols-outlined">groups</span>
-            Comunidad
-        </a>
-<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
-<span class="material-symbols-outlined">leaderboard</span>
-            Ranking
-        </a>
-<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
-<span class="material-symbols-outlined">person</span>
-            Mi Perfil
-        </a>
-</nav>
-<div class="p-4 border-t border-outline-variant">
-<button class="w-full flex items-center justify-center gap-2 p-3 text-error font-title-sm hover:bg-error-container/20 rounded-lg transition-colors" onclick="toggleDrawer()">
-<span class="material-symbols-outlined">logout</span>
-            Cerrar
-        </button>
-</div>
-</aside>
-<!-- Top AppBar -->
-<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant">
-<div class="flex items-center justify-between px-container-margin h-16 w-full max-w-screen-xl mx-800">
-<button class="active:scale-95 transition-transform duration-200 hover:bg-surface-container-low p-2 rounded-full" onclick="toggleDrawer()">
-<span class="material-symbols-outlined text-primary">menu</span>
-</button>
-<h1 class="text-display-lg font-display-lg text-primary tracking-tighter">Rakion</h1>
-<button class="active:scale-95 transition-transform duration-200 hover:bg-surface-container-low p-2 rounded-full">
-<span class="material-symbols-outlined text-primary">search</span>
-</button>
-</div>
-</header>
 
-<main class="scrolling-content max-w-[840px] mx-800">
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Hero Section -->
 <section class="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
 <img alt="Rakion Hero" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuXLPysV23A7B5N7WH2PsVGrZO-ycWj18AY54pDz4Kj1FenrAvu7Rvy_s_qfQ-LzSiXDXsz_-cKnB8r5k3qgs8w-r6vQ3HkE9jfcqwqcXv12EM4Z6-AbbgQxQUih3G2kzzeqS9-ve_z8hlG6C58AMgSwZt2N8KeMcyLs1C24DxvXUiS_wQgkeRobWwxFP6O7qnvb5xP6pGPgaDw8KVegoWTrQJjw3UQZzZLeon4wJrefjHcfndhIRZJ0CY"/>
 <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
-<div class="absolute bottom-0 left-0 w-full px-margin-mobile md:px-margin-desktop pb-8">
+<div class="absolute bottom-0 left-0 w-full md:px-margin-desktop pb-8 px-8">
 <h2 class="font-headline-xl text-headline-xl text-primary drop-shadow-sm mb-2">Rakion: Chaos Force</h2>
 <div class="flex flex-wrap gap-2">
 <span class="bg-secondary-container/20 backdrop-blur-md px-3 py-1 rounded-full text-on-secondary-container font-label-md text-label-md border border-secondary-container/30">Action RPG</span>
@@ -188,7 +148,7 @@
 </div>
 </div>
 </section>
-<div class="px-margin-mobile md:px-margin-desktop py-md">
+<div class="md:px-margin-desktop py-md px-8">
 <!-- Stats & Download Grid -->
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
 <!-- Stats Row -->
@@ -359,14 +319,6 @@
         });
     </script>
 </body></html>
-
-
-
-
-
-
-
-
 
 
 
