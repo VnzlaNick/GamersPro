@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="light" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -47,7 +46,7 @@
                     "on-surface": "#191c1e",
                     "on-primary-container": "#003554",
                     "primary-fixed": "#cde5ff",
-                    "on-secondary-fixed": "#0f1c2c",
+                    "on-secondary-fixed": "#001d32",
                     "on-tertiary-container": "#2a333a",
                     "on-secondary": "#ffffff",
                     "on-error-container": "#93000a",
@@ -162,75 +161,67 @@
         </button>
 </div>
 </aside>
-<!-- Top AppBar -->
-<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant">
-<div class="flex items-center justify-between px-container-margin h-16 w-full max-w-screen-xl mx-auto">
-<button class="active:scale-95 transition-transform duration-200 hover:bg-surface-container-low p-2 rounded-full" onclick="toggleDrawer()">
-<span class="material-symbols-outlined text-primary">menu</span>
-</button>
-<h1 class="text-display-lg font-display-lg text-primary tracking-tighter">Nuevo  post</h1>
-<button class="active:scale-95 transition-transform duration-200 hover:bg-surface-container-low p-2 rounded-full">
-<span class="material-symbols-outlined text-primary">search</span>
-</button>
-</div>
-</header>
 
-
-
-<!-- TopAppBar (From Shared JSON Logic) -->
-<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-4 h-14 docked full-width top-0 z-50">
-<button aria-label="Cerrar" class="flex items-center justify-center w-10 h-10 hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<!-- TopAppBar (Primary) -->
+<header class="sticky top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant">
+<div class="flex items-center justify-between px-4 h-14 w-full">
+<button aria-label="Cerrar" class="active:scale-95 transition-transform duration-200 hover:bg-surface-container-low p-2 rounded-full" onclick="window.history.back()">
 <span class="material-symbols-outlined text-on-surface-variant">close</span>
 </button>
 <h1 class="text-headline-md font-headline-md text-on-surface">Nuevo Post</h1>
-<button class="bg-secondary-container text-on-secondary text-label-caps font-label-caps px-5 py-2 rounded-full hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<button class="bg-primary text-on-primary text-title-sm font-bold px-5 py-2 rounded-full hover:opacity-90 transition-opacity active:scale-95 transition-transform">
                 Publicar
             </button>
+</div>
 </header>
+
 <!-- Main Content Area -->
 <main class="flex-grow flex flex-col p-4 space-y-6">
 <!-- User Info & Community Selector -->
 <div class="flex items-center space-x-3">
 <div class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young gamer in their early twenties, looking confidently at the camera. The lighting is soft and neutral, typical of a high-end social media profile picture. The background is a clean, minimal gradient of light grays and blues, matching the corporate yet modern gaming aesthetic of GamersPro." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn5h7PZ9qBj6B2ENxwptovv_4U2zL9IhLww2PijXr-dYeAxMh4ruyhiYeF2Fq9CtmV8xqa0iaNHKIjWW5k5E6f_qRa4hAk2IHh9ls6Rntin_kTa4AEGZOmkvR7XdT-WLleiZoriX5wTyq5NWArXe3rx3cbEhR7DEIX8nRlkzLqF_lZhLm8LlgDtvp3Ypekni_WOxya2oWRhtcN_yL-4VD0kzEOp7BMwMkMcVp91eiD9IZjwkY6-9iW_fwJRaOVELmBvcJf42Y_97A"/>
+<img class="w-full h-full object-cover" alt="Perfil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn5h7PZ9qBj6B2ENxwptovv_4U2zL9IhLww2PijXr-dYeAxMh4ruyhiYeF2Fq9CtmV8xqa0iaNHKIjWW5k5E6f_qRa4hAk2IHh9ls6Rntin_kTa4AEGZOmkvR7XdT-WLleiZoriX5wTyq5NWArXe3rx3cbEhR7DEIX8nRlkzLqF_lZhLm8LlgDtvp3Ypekni_WOxya2oWRhtcN_yL-4VD0kzEOp7BMwMkMcVp91eiD9IZjwkY6-9iW_fwJRaOVELmBvcJf42Y_97A"/>
 </div>
 <div class="flex-grow">
 <div class="relative">
 <select class="appearance-none w-full bg-surface-container border border-outline-variant rounded-lg py-2 px-4 pr-10 text-body-md font-bold text-primary focus:ring-2 focus:ring-primary focus:outline-none transition-all cursor-pointer">
-<option>Seleccionar Comunidad</option>
+<option value="">Seleccionar Comunidad</option>
 <option selected="" value="rakion">Rakion</option>
 <option value="bloody-striker">Bloody Striker</option>
 <option value="general">Comunidad General</option>
-<option selected="" value="rakion">Rakion</option>
-<option value="bloody-striker">Bloody Striker</option>
-<option value="general">Comunidad General</option>
-
-
-
 </select>
 <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
 </div>
 </div>
 </div>
+
 <!-- Content Editor -->
 <div class="flex-grow flex flex-col">
-<textarea autofocus="" class="w-full flex-grow bg-transparent border-none focus:ring-0 text-body-lg resize-none placeholder:text-on-surface-variant/50" placeholder="¡Comparte algo con la comunidad!"></textarea>
+    <!-- User Input ID Field -->
+    <div class="mb-4">
+        <label for="post-id" class="block text-label-bold font-label-bold text-on-surface-variant mb-1 uppercase">ID de Usuario para Foro</label>
+        <input type="text" id="post-id" placeholder="Ingresa tu ID de usuario" class="w-full bg-surface-container border border-outline-variant rounded-lg py-2 px-4 text-body-md focus:ring-2 focus:ring-primary focus:outline-none transition-all" />
+    </div>
+    
+<textarea autofocus="" id="post-content" class="w-full flex-grow bg-transparent border-none focus:ring-0 text-body-md min-h-[200px] resize-none placeholder:text-on-surface-variant/50" placeholder="¡Comparte algo con la comunidad!"></textarea>
 </div>
-<!-- Preview/Selected Area (Optional Visual Interest) -->
+
+<!-- Preview/Selected Area -->
 <div class="border-t border-outline-variant pt-4">
 <div class="bg-surface-container rounded-xl p-4 border border-outline-variant/50 flex items-center space-x-4">
 <div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center text-primary">
 <span class="material-symbols-outlined">rocket_launch</span>
 </div>
 <div>
-<p class="text-label-caps font-label-caps text-on-surface-variant">Sugerencia</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Sugerencia</p>
 <p class="text-body-md font-bold">Añade una imagen para +40% alcance</p>
 </div>
 </div>
 </div>
 </main>
+
 <!-- Attachment Bar (Bottom Anchor) -->
-<div class="bg-surface-container/80 backdrop-blur-md border-t border-outline-variant p-4 flex items-center justify-between">
+<div class="fixed bottom-0 left-0 w-full bg-surface-container/80 backdrop-blur-md border-t border-outline-variant p-4 pb-8 flex items-center justify-between z-50">
 <div class="flex items-center space-x-2">
 <button class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center hover:opacity-80 transition-opacity active:scale-95 transition-transform">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">image</span>
@@ -246,58 +237,9 @@
 </button>
 </div>
 <div class="flex items-center text-on-surface-variant space-x-1">
-<span class="text-label-caps font-label-caps">0 / 280</span>
+<span class="text-label-sm font-label-sm" id="char-counter">0 / 280</span>
 </div>
 </div>
-<!-- Safe Area Spacer -->
-<div class="h-8 bg-surface-container/80 backdrop-blur-md"></div>
-</div>
-<!-- Micro-interactions Script -->
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const textarea = document.querySelector('textarea');
-            const counter = document.querySelector('.text-label-caps');
-            
-            textarea.addEventListener('input', (e) => {
-                const length = e.target.value.length;
-                counter.textContent = `${length} / 280`;
-                
-                if (length > 250) {
-                    counter.classList.add('text-error');
-                } else {
-                    counter.classList.remove('text-error');
-                }
-            });
-
-            // Focus textarea on load
-            textarea.focus();
-        });
-    </script>
-</body></html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script>
     function toggleDrawer() {
@@ -305,13 +247,42 @@
         document.body.classList.toggle('drawer-open');
     }
 
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 20) {
-            header.classList.add('shadow-md');
-        } else {
-            header.classList.remove('shadow-md');
-        }
+    document.addEventListener('DOMContentLoaded', () => {
+        const textarea = document.getElementById('post-content');
+        const counter = document.getElementById('char-counter');
+        const userIdInput = document.getElementById('post-id');
+        
+        textarea.addEventListener('input', (e) => {
+            const length = e.target.value.length;
+            counter.textContent = `${length} / 280`;
+            
+            if (length > 250) {
+                counter.classList.add('text-error');
+            } else {
+                counter.classList.remove('text-error');
+            }
+        });
+
+        // Simulación de envío con ID para el foro
+        document.querySelector('button.bg-primary').addEventListener('click', () => {
+            const id = userIdInput.value;
+            const content = textarea.value;
+            
+            if (!id) {
+                alert('Por favor, ingresa tu ID para conectarte al foro.');
+                userIdInput.focus();
+                return;
+            }
+            
+            if (!content) {
+                alert('El contenido no puede estar vacío.');
+                textarea.focus();
+                return;
+            }
+
+            console.log(`Enviando al foro con ID: ${id}`, { content });
+            alert('¡Post enviado con éxito al foro!');
+        });
     });
 </script>
 </body></html>
