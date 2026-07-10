@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html class="light" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -46,7 +47,7 @@
                     "on-surface": "#191c1e",
                     "on-primary-container": "#003554",
                     "primary-fixed": "#cde5ff",
-                    "on-secondary-fixed": "#001d32",
+                    "on-secondary-fixed": "#0f1c2c",
                     "on-tertiary-container": "#2a333a",
                     "on-secondary": "#ffffff",
                     "on-error-container": "#93000a",
@@ -127,14 +128,14 @@
 <div class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300" id="drawer-backdrop" onclick="toggleDrawer()"></div>
 <aside class="fixed top-0 left-0 h-full w-[280px] bg-surface-container-lowest z-[70] -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col" id="side-drawer">
 <div class="p-6 border-b border-outline-variant flex items-center justify-between bg-primary-container/10">
-<h2 class="text-display-lg font-display-lg text-primary tracking-tighter">Nuevo post</h2>
+<h2 class="text-display-lg font-display-lg text-primary tracking-tighter">GamersPro</h2>
 <button class="p-2 rounded-full hover:bg-surface-container-low transition-colors" onclick="toggleDrawer()">
 <span class="material-symbols-outlined text-on-surface-variant">close</span>
 </button>
 </div>
 <nav class="flex-1 overflow-y-auto p-4 space-y-2">
 <a class="flex items-center gap-4 p-4 rounded-xl text-primary font-title-sm bg-primary/10 transition-colors" href="index.html">
-<span class="material-symbols-outlined">home</span>
+<span class="material-symbols-outlined">newspaper</span>
             Inicio
         </a>
 <a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-title-sm hover:bg-surface-container-low transition-colors" href="#">
@@ -161,128 +162,155 @@
         </button>
 </div>
 </aside>
+<!-- Top AppBar -->
 
-<!-- TopAppBar (Primary) -->
-<header class="sticky top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant">
-<div class="flex items-center justify-between px-4 h-14 w-full">
-<button aria-label="Cerrar" class="active:scale-95 transition-transform duration-200 hover:bg-surface-container-low p-2 rounded-full" onclick="window.history.back()">
-<span class="material-symbols-outlined text-on-surface-variant">close</span>
-</button>
-<h1 class="text-headline-md font-headline-md text-on-surface">Nuevo Post</h1>
-<button class="bg-primary text-on-primary text-title-sm font-bold px-5 py-2 rounded-full hover:opacity-90 transition-opacity active:scale-95 transition-transform">
-                Publicar
-            </button>
-</div>
-</header>
-
-<!-- Main Content Area -->
-<main class="flex-grow flex flex-col p-4 space-y-6">
-<!-- User Info & Community Selector -->
-<div class="flex items-center space-x-3">
-<div class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
-<img class="w-full h-full object-cover" alt="Perfil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn5h7PZ9qBj6B2ENxwptovv_4U2zL9IhLww2PijXr-dYeAxMh4ruyhiYeF2Fq9CtmV8xqa0iaNHKIjWW5k5E6f_qRa4hAk2IHh9ls6Rntin_kTa4AEGZOmkvR7XdT-WLleiZoriX5wTyq5NWArXe3rx3cbEhR7DEIX8nRlkzLqF_lZhLm8LlgDtvp3Ypekni_WOxya2oWRhtcN_yL-4VD0kzEOp7BMwMkMcVp91eiD9IZjwkY6-9iW_fwJRaOVELmBvcJf42Y_97A"/>
-</div>
-<div class="flex-grow">
-<div class="relative">
-<select class="appearance-none w-full bg-surface-container border border-outline-variant rounded-lg py-2 px-4 pr-10 text-body-md font-bold text-primary focus:ring-2 focus:ring-primary focus:outline-none transition-all cursor-pointer">
-<option value="">Seleccionar Comunidad</option>
-<option selected="" value="rakion">Rakion</option>
-<option value="bloody-striker">Bloody Striker</option>
-<option value="general">Comunidad General</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
-</div>
-</div>
-</div>
-
-<!-- Content Editor -->
-<div class="flex-grow flex flex-col">
-    <!-- User Input ID Field -->
-    <div class="mb-4">
-        <label for="post-id" class="block text-label-bold font-label-bold text-on-surface-variant mb-1 uppercase">ID de Usuario para Foro</label>
-        <input type="text" id="post-id" placeholder="Ingresa tu ID de usuario" class="w-full bg-surface-container border border-outline-variant rounded-lg py-2 px-4 text-body-md focus:ring-2 focus:ring-primary focus:outline-none transition-all" />
+ <body class="bg-background text-on-background font-body-md min-h-screen pb-7">
+  <!-- Hidden Inputs for Native Functionality -->
+  <input type="file" id="image-upload" accept="image/*" class="hidden"> <input type="file" id="video-upload" accept="video/*" class="hidden"> <!-- Side Drawer Backdrop -->
+  <div class="fixed inset-0 bg-black/60 z-[60] opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm" id="drawer-backdrop" onclick="toggleDrawer()"></div>
+  <!-- Side Drawer -->
+  <aside class="fixed top-0 left-0 h-full w-80 bg-surface-container z-[70] transform -translate-x-full transition-transform duration-300 border-r border-white/10 p-6" id="side-drawer">
+   <div class="flex items-center justify-between mb-8">
+    <h2 class="text-xl font-bold text-primary">Menú</h2>
+    <button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant" onclick="toggleDrawer()"><span class="material-symbols-outlined">close</span></button>
+   </div>
+   <nav class="space-y-2">
+    <a class="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors text-on-surface" href="#" onclick="toggleDrawer()"> <span class="material-symbols-outlined">home</span> <span class="font-medium">Inicio</span> </a> <a class="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors text-on-surface" href="#" onclick="toggleDrawer()"> <span class="material-symbols-outlined">explore</span> <span class="font-medium">Explorar</span> </a> <a class="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors text-on-surface" href="#" onclick="toggleDrawer()"> <span class="material-symbols-outlined">notifications</span> <span class="font-medium">Notificaciones</span> </a>
+    <div class="h-px bg-white/10 my-4"></div>
+    <a class="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors text-on-surface" href="#" onclick="toggleDrawer()"> <span class="material-symbols-outlined">person</span> <span class="font-medium">Perfil</span> </a>
+   </nav>
+  </aside>
+  <!-- Top AppBar -->
+  <header class="fixed top-0 w-full z-50 bg-surface-container/80 backdrop-blur-md border-b border-white/10">
+   <div class="flex items-center justify-between px-4 h-16 w-full max-w-screen-xl mx-auto">
+    <button class="p-2 rounded-full hover:bg-white/10 text-primary" onclick="toggleDrawer()"><span class="material-symbols-outlined">menu</span></button>
+    <h1 class="text-xl font-bold tracking-tighter text-primary">GamersPro</h1>
+    <button class="p-2 rounded-full hover:bg-white/10 text-primary" onclick="alert('Abriendo ajustes de perfil nativos...')"><span class="material-symbols-outlined">settings</span></button>
+   </div>
+  </header>
+  <main class="pt-20 px-4 max-w-3xl mx-auto">
+   <header class="mb-6">
+    <h2 class="text-2xl font-bold text-primary">Crear Nuevo Post</h2>
+    <p class="text-on-surface-variant">Comparte tus pensamientos con la comunidad.</p>
+   </header>
+   <div class="bg-surface-container-lowest border border-white/10 rounded-2xl p-6 shadow-2xl">
+    <!-- Title -->
+    <div class="mb-6">
+     <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2" for="post-title">Título</label> <input class="w-full bg-transparent border-0 border-b border-white/10 focus:border-primary focus:ring-0 text-xl font-bold py-3 placeholder:text-white/20 transition-colors" id="post-title" placeholder="Título descriptivo..." type="text">
     </div>
+    <div class="mb-6">
+     <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2" for="post-category">Categoría</label>
+     <div class="relative">
+      <select class="w-full bg-surface-container-low border border-white/10 rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none appearance-none" id="post-category"> <option value="anuncios">Anuncios</option> <option value="torneos">Torneos</option> <option value="discusion">Discusión General</option> <option value="guias">Guías</option> <option value="hardware">Hardware</option> </select>
+      <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-on-surface-variant">
+       <span class="material-symbols-outlined">expand_more</span>
+      </div>
+     </div>
+    </div>
+    <!-- Content Area -->
+    <div class="mb-6">
+     <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Contenido</label>
+     <div class="flex items-center gap-2 p-2 bg-surface-container-low rounded-t-xl border-x border-t border-white/10">
+      <button class="p-2 rounded hover:bg-white/10 text-on-surface-variant" onclick="document.getElementById('image-upload').click()" title="Subir Imagen"><span class="material-symbols-outlined">image</span></button>
+      <button class="p-2 rounded hover:bg-white/10 text-on-surface-variant" onclick="document.getElementById('video-upload').click()" title="Subir Video"><span class="material-symbols-outlined">videocam</span></button>
+      <button class="p-2 rounded hover:bg-white/10 text-on-surface-variant" onclick="alert('Configuración de publicación nativa')" title="Ajustes"><span class="material-symbols-outlined">settings</span></button>
+      <div class="w-px h-6 bg-white/10 mx-1"></div>
+      <button class="p-2 rounded hover:bg-white/10 text-on-surface-variant" onclick="document.execCommand('bold')"><span class="material-symbols-outlined">format_bold</span></button>
+      <button class="p-2 rounded hover:bg-white/10 text-on-surface-variant" onclick="document.execCommand('italic')"><span class="material-symbols-outlined">format_italic</span></button>
+     </div>
+     <textarea class="w-full bg-surface-container-low border border-white/10 rounded-b-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none min-h-[300px]" id="post-content" placeholder="Escribe tu historia aquí..."></textarea>
+    </div>
+    <!-- Feedback Area for Uploaded Files -->
+    <div id="upload-feedback" class="mb-6 hidden">
+     <div class="flex items-center gap-3 p-3 bg-primary/10 rounded-xl border border-primary/20">
+      <span class="material-symbols-outlined text-primary" id="feedback-icon">attach_file</span> <span id="feedback-text" class="text-sm font-medium text-on-surface">Archivo seleccionado</span>
+      <button onclick="clearUpload()" class="ml-auto p-1 hover:bg-white/10 rounded-full"><span class="material-symbols-outlined text-xs">close</span></button>
+     </div>
+    </div>
+    <!-- Actions -->
+    <div class="flex flex-col gap-3">
+     <button class="w-full py-4 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 active:scale-[0.98] transition-all" onclick="handlePublish()">Publicar Post</button>
+     <button class="w-full py-4 rounded-xl border border-white/10 text-on-surface-variant font-bold hover:bg-white/5 transition-all" onclick="handleSaveDraft()">Guardar Borrador</button>
+    </div>
+   </div>
+  </main>
+  <script>
+function toggleDrawer() {
+    const drawer = document.getElementById('side-drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+    drawer.classList.toggle('-translate-x-full');
+    backdrop.classList.toggle('opacity-0');
+    backdrop.classList.toggle('opacity-100');
+    backdrop.classList.toggle('pointer-events-none');
+    backdrop.classList.toggle('pointer-events-auto');
+}
+
+function handlePublish() {
+    const title = document.getElementById('post-title').value;
+    const content = document.getElementById('post-content').value;
     
-<textarea autofocus="" id="post-content" class="w-full flex-grow bg-transparent border-none focus:ring-0 text-body-md min-h-[200px] resize-none placeholder:text-on-surface-variant/50" placeholder="¡Comparte algo con la comunidad!"></textarea>
-</div>
-
-<!-- Preview/Selected Area -->
-<div class="border-t border-outline-variant pt-4">
-<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/50 flex items-center space-x-4">
-<div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">rocket_launch</span>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Sugerencia</p>
-<p class="text-body-md font-bold">Añade una imagen para +40% alcance</p>
-</div>
-</div>
-</div>
-</main>
-
-<!-- Attachment Bar (Bottom Anchor) -->
-<div class="fixed bottom-0 left-0 w-full bg-surface-container/80 backdrop-blur-md border-t border-outline-variant p-4 pb-8 flex items-center justify-between z-50">
-<div class="flex items-center space-x-2">
-<button class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center hover:opacity-80 transition-opacity active:scale-95 transition-transform">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">image</span>
-</button>
-<button class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center hover:opacity-80 transition-opacity active:scale-95 transition-transform">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">videocam</span>
-</button>
-<button class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center hover:opacity-80 transition-opacity active:scale-95 transition-transform">
-<span class="material-symbols-outlined">link</span>
-</button>
-<button class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center hover:opacity-80 transition-opacity active:scale-95 transition-transform">
-<span class="material-symbols-outlined">equalizer</span>
-</button>
-</div>
-<div class="flex items-center text-on-surface-variant space-x-1">
-<span class="text-label-sm font-label-sm" id="char-counter">0 / 280</span>
-</div>
-</div>
-
-<script>
-    function toggleDrawer() {
-        document.body.classList.toggle('overflow-hidden');
-        document.body.classList.toggle('drawer-open');
+    if(!title || !content) {
+        // Usando una respuesta más nativa
+        if (window.confirm('Falta información. ¿Quieres completar el post ahora?')) {
+            return;
+        }
+        return;
     }
+    
+    alert('¡Éxito! Post "' + title + '" publicado correctamente en GamersPro.');
+}
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const textarea = document.getElementById('post-content');
-        const counter = document.getElementById('char-counter');
-        const userIdInput = document.getElementById('post-id');
-        
-        textarea.addEventListener('input', (e) => {
-            const length = e.target.value.length;
-            counter.textContent = `${length} / 280`;
-            
-            if (length > 250) {
-                counter.classList.add('text-error');
-            } else {
-                counter.classList.remove('text-error');
-            }
-        });
+function handleSaveDraft() {
+    const title = document.getElementById('post-title').value;
+    if(title) {
+        alert('Borrador "' + title + '" guardado en el almacenamiento local del dispositivo.');
+    } else {
+        alert('Borrador guardado localmente.');
+    }
+}
 
-        // Simulación de envío con ID para el foro
-        document.querySelector('button.bg-primary').addEventListener('click', () => {
-            const id = userIdInput.value;
-            const content = textarea.value;
-            
-            if (!id) {
-                alert('Por favor, ingresa tu ID para conectarte al foro.');
-                userIdInput.focus();
-                return;
-            }
-            
-            if (!content) {
-                alert('El contenido no puede estar vacío.');
-                textarea.focus();
-                return;
-            }
+// Handling Native File Uploads
+const imageInput = document.getElementById('image-upload');
+const videoInput = document.getElementById('video-upload');
+const feedbackArea = document.getElementById('upload-feedback');
+const feedbackText = document.getElementById('feedback-text');
+const feedbackIcon = document.getElementById('feedback-icon');
 
-            console.log(`Enviando al foro con ID: ${id}`, { content });
-            alert('¡Post enviado con éxito al foro!');
-        });
+imageInput.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+        showFeedback(this.files[0].name, 'image');
+    }
+});
+
+videoInput.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+        showFeedback(this.files[0].name, 'videocam');
+    }
+});
+
+function showFeedback(name, icon) {
+    feedbackArea.classList.remove('hidden');
+    feedbackText.innerText = name;
+    feedbackIcon.innerText = icon;
+}
+
+function clearUpload() {
+    imageInput.value = '';
+    videoInput.value = '';
+    feedbackArea.classList.add('hidden');
+}
+
+// Auto-save simulation
+const contentTextarea = document.getElementById('post-content');
+if (contentTextarea) {
+    let timeout = null;
+    contentTextarea.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            console.log('Sincronizando borrador con la base de datos nativa...');
+        }, 1000);
     });
+}
 </script>
-</body></html>
+ </body>
+</html>
