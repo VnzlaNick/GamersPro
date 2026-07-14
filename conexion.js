@@ -21,4 +21,8 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+
+// EXPORTAMOS las funciones para usarlas en otros archivos
+export { db, collection, addDoc, getDocs, serverTimestamp };
+
 </script>
