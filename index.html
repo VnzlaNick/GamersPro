@@ -519,16 +519,13 @@
 <!-- Enlace exacto a tu archivo de conexión usando módulos -->
 <script type="module" src="./conexion.js"></script>
 
- <script type="module">
-  // 1. Traemos la base de datos y las herramientas de tu archivo de conexión
+<script type="module">
   import { db, collection, addDoc, serverTimestamp } from "./conexion.js";
 
-  // 2. Función automática de prueba
   async function probarEnvioForo() {
     try {
       console.log("Intentando enviar post de prueba a Firebase...");
       
-      // Guardamos un mensaje ficticio en una colección llamada "publicaciones"
       const docRef = await addDoc(collection(db, "publicaciones"), {
         seccion: "free_fire",
         titulo: "¡Buscando escuadra para subir a Heroico!",
@@ -537,15 +534,18 @@
         fecha: serverTimestamp()
       });
 
-      console.log("¡ÉXITO TOTAL! El post se guardó en Firebase con el ID:", docRef.id);
+      // === TOQUE QUIRÚRGICO MÓVIL: Esto mostrará un aviso flotante real en tu pantalla ===
+      alert("¡ÉXITO TOTAL DESDE EL MÓVIL! ID guardado: " + docRef.id);
+
     } catch (error) {
-      console.error("Error en la prueba quirúrgica:", error);
+      // Si algo falla, también te avisará en la pantalla del móvil
+      alert("Error en el móvil: " + error.message);
     }
   }
 
-  // Ejecutamos la prueba apenas cargue la página
   probarEnvioForo();
- </script>
+</script>
+
  
  
 </body>
