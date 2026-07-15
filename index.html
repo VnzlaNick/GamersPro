@@ -512,39 +512,52 @@
 </div>
 </footer>
 
- <!-- Pega esto justo antes de </body> -->
-  <script type="module" src="conexion.js"></script>
-  <script type="module" src="main.js"></script>
 
-<!-- Enlace exacto a tu archivo de conexión usando módulos -->
-<script type="module" src="./conexion.js"></script>
 
+<!-- UNIFICACIÓN QUIRÚRGICA: Firebase integrado directamente en la vista -->
 <script type="module">
-  import { db, collection, addDoc, serverTimestamp } from "./conexion.js";
+  // 1. Importamos las herramientas oficiales desde los servidores de Google
+  import { initializeApp } from "https://gstatic.com";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://gstatic.com";
 
-  async function probarEnvioForo() {
+  // 2. Tus credenciales reales de GamersPro
+  const firebaseConfig = {
+    apiKey: "AIzaSyA8lyX4IVmbgBNoI9-ufXYQanr78AiX_zU",
+    authDomain: "://firebaseapp.com",
+    projectId: "migamerspro",
+    storageBucket: "migamerspro.firebasestorage.app",
+    messagingSenderId: "1002942942865",
+    appId: "1:1002942942865:web:444fa77ac2cd71660fb930"
+  };
+
+  // 3. Encendemos el motor de Firebase y la Base de Datos
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 4. Función de prueba con alerta directa forzada
+  async function enviarMensajeInmediato() {
     try {
-      console.log("Intentando enviar post de prueba a Firebase...");
-      
+      // Guardamos la publicación de prueba
       const docRef = await addDoc(collection(db, "publicaciones"), {
-        seccion: "free_fire",
-        titulo: "¡Buscando escuadra para subir a Heroico!",
-        contenido: "Hola comunidad, busco jugadores activos para jugar esta noche.",
+        seccion: "general",
+        titulo: "Prueba desde móvil unificada",
+        contenido: "Verificando el puente directo sin archivos externos.",
         autor: "GamersPj",
         fecha: serverTimestamp()
       });
 
-      // === TOQUE QUIRÚRGICO MÓVIL: Esto mostrará un aviso flotante real en tu pantalla ===
-      alert("¡ÉXITO TOTAL DESDE EL MÓVIL! ID guardado: " + docRef.id);
-
+      // Alerta visual obligatoria en tu pantalla
+      alert("¡LOGRADO! Conectado con éxito. ID de Firebase: " + docRef.id);
     } catch (error) {
-      // Si algo falla, también te avisará en la pantalla del móvil
-      alert("Error en el móvil: " + error.message);
+      alert("Error crítico en la conexión: " + error.message);
     }
   }
 
-  probarEnvioForo();
+  // Forzamos la ejecución de la prueba
+  enviarMensajeInmediato();
 </script>
+ 
+
 
  
  
