@@ -245,6 +245,52 @@
     </div>
     <div class="divide-y divide-portal-border">
     
+         
+    <!-- Sección 2: Free Fire -->
+     <a href="zfree.html" class="forum-row p-4 flex gap-4 hover:bg-portal-blue/5 transition-colors block"> 
+      <div class="flex-shrink-0">
+     <div class="w-10 h-10 rounded-lg bg-portal-blue/10 flex items-center justify-center border border-portal-blue/20">
+               <span class="material-symbols-outlined text-portal-blue">sports_esports</span>
+       </div>
+      </div> 
+      <div class="flex-grow">
+       <div class="flex justify-between items-start">
+        <h3 class="font-bold text-sm text-portal-text hover:text-portal-blue">Free Fire</h3>
+        <div class="text-[10px] text-portal-text-muted text-right leading-tight">
+         <p class="font-semibold text-portal-text">14k</p>
+         <p>posts</p>
+        </div>
+       </div>
+       <p class="text-[11px] text-portal-text-muted mt-0.5 leading-normal">Estrategias y trucos mas sobre los mejores juegos online..</p>
+       <div class="mt-2.5 flex items-center gap-2 text-[10px] text-portal-text-muted bg-portal-bg rounded-md p-2 border border-portal-border/50">
+        <span class="material-symbols-outlined text-[14px]">chat_bubble</span> <span class="truncate">Detienen 2 personas por... <span class="text-portal-blue font-medium">Rossy9</span></span>
+       </div>
+      </div> 
+     </a> 
+          <!-- Sección 2: Serven Mu -->
+     <a href="zserve.html" class="forum-row p-4 flex gap-4 hover:bg-portal-blue/5 transition-colors block"> 
+      <div class="flex-shrink-0">
+      <div class="w-10 h-10 rounded-lg bg-portal-blue/10 flex items-center justify-center border border-portal-blue/20">
+             <span class="material-symbols-outlined text-portal-blue">sports_esports</span>
+       </div>
+      </div> 
+      <div class="flex-grow">
+       <div class="flex justify-between items-start">
+        <h3 class="font-bold text-sm text-portal-text hover:text-portal-blue">Servidores Mu</h3>
+        <div class="text-[10px] text-portal-text-muted text-right leading-tight">
+         <p class="font-semibold text-portal-text">14k</p>
+         <p>posts</p>
+        </div>
+       </div>
+       <p class="text-[11px] text-portal-text-muted mt-0.5 leading-normal">Todo lo que ocurre de interesante sobre la Comunidad y en el mundo.</p>
+       <div class="mt-2.5 flex items-center gap-2 text-[10px] text-portal-text-muted bg-portal-bg rounded-md p-2 border border-portal-border/50">
+        <span class="material-symbols-outlined text-[14px]">chat_bubble</span> <span class="truncate">Detienen 2 personas por... <span class="text-portal-blue font-medium">Rossy9</span></span>
+       </div>
+      </div> 
+     </a>
+    </div>
+   </div>
+  </main>
      <!-- Sección 1: Rakion -->
      <a href="zrakion.html" class="forum-row p-4 flex gap-4 hover:bg-portal-blue/5 transition-colors block"> 
       <div class="flex-shrink-0">
@@ -512,55 +558,11 @@
 </div>
 </footer>
 
+  <!-- Pega esto justo antes de </body> -->
+  <script type="module" src="conexion.js"></script>
+  <script type="module" src="main.js"></script>
+  
 
-
-<!-- UNIFICACIÓN QUIRÚRGICA: Firebase integrado directamente en la vista -->
-<script type="module">
-  // 1. Importamos las herramientas oficiales desde los servidores de Google
-  import { initializeApp } from "https://gstatic.com";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://gstatic.com";
-
-  // 2. Tus credenciales reales de GamersPro
-  const firebaseConfig = {
-    apiKey: "AIzaSyA8lyX4IVmbgBNoI9-ufXYQanr78AiX_zU",
-    authDomain: "://firebaseapp.com",
-    projectId: "migamerspro",
-    storageBucket: "migamerspro.firebasestorage.app",
-    messagingSenderId: "1002942942865",
-    appId: "1:1002942942865:web:444fa77ac2cd71660fb930"
-  };
-
-  // 3. Encendemos el motor de Firebase y la Base de Datos
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // 4. Función de prueba con alerta directa forzada
-  async function enviarMensajeInmediato() {
-    try {
-      // Guardamos la publicación de prueba
-      const docRef = await addDoc(collection(db, "publicaciones"), {
-        seccion: "general",
-        titulo: "Prueba desde móvil unificada",
-        contenido: "Verificando el puente directo sin archivos externos.",
-        autor: "GamersPj",
-        fecha: serverTimestamp()
-      });
-
-      // Alerta visual obligatoria en tu pantalla
-      alert("¡LOGRADO! Conectado con éxito. ID de Firebase: " + docRef.id);
-    } catch (error) {
-      alert("Error crítico en la conexión: " + error.message);
-    }
-  }
-
-  // Forzamos la ejecución de la prueba
-  enviarMensajeInmediato();
-</script>
- 
-
-
- 
- 
 </body>
   
   
@@ -600,6 +602,6 @@
   
   
   
-  
-  
+
+
 
