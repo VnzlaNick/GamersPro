@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="light" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -134,6 +133,15 @@
 <body class="bg-background text-on-background min-h-screen flex flex-col">
 <!-- TopAppBar Shell (Transactional: Back + Brand only) -->
 <header class="w-full top-0 sticky z-50 bg-background flex items-center justify-between px-margin-mobile h-16">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-150 text-primary" style="color: #2196f3;" onclick="window.history.back();">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight" style="color: #2196f3;">GamersPro</h1>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</header>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar Shell (Transactional: Back + Brand only) -->
+<header class="w-full top-0 sticky z-50 bg-background flex items-center justify-between px-margin-mobile h-16">
 <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-150 text-primary" style="color: #2196f3;">
 <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
 </button>
@@ -146,15 +154,16 @@
 <h2 class="font-headline-lg text-headline-lg text-on-background mb-2">Únete a la Comunidad</h2>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-[280px] mx-auto">Conéctate con miles de jugadores, comparte tus logros y descubre nuevos mundos.</p>
 </section>
+
 <!-- Registration Form Card -->
 <div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl ambient-shadow">
-<form action="#" class="space-y-6" onsubmit="event.preventDefault();">
+<form id="registro-form" class="space-y-6">
 <!-- Username -->
 <div class="space-y-2">
 <label class="font-label-md text-label-md text-on-surface ml-1">Nombre de usuario</label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">person</span>
-<input class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none" placeholder="Ej: PlayerOne" style="--tw-ring-color: #2196f3; border-color: inherit;" type="text"/>
+<input id="username" class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none" placeholder="Ej: PlayerOne" style="--tw-ring-color: #2196f3; border-color: inherit;" type="text" required/>
 </div>
 </div>
 <!-- Email -->
@@ -162,7 +171,7 @@
 <label class="font-label-md text-label-md text-on-surface ml-1">Correo electrónico</label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">mail</span>
-<input class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none" placeholder="tu@email.com" style="--tw-ring-color: #2196f3; border-color: inherit;" type="email"/>
+<input id="email" class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none" placeholder="tu@email.com" style="--tw-ring-color: #2196f3; border-color: inherit;" type="email" required/>
 </div>
 </div>
 <!-- Password -->
@@ -170,95 +179,55 @@
 <label class="font-label-md text-label-md text-on-surface ml-1">Contraseña</label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">lock</span>
-<input class="w-full pl-10 pr-10 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none" placeholder="••••••••" style="--tw-ring-color: #2196f3; border-color: inherit;" type="password"/>
-<span class="material-symbols-outlined absolute right-3 text-outline cursor-pointer text-[20px]">visibility</span>
+<input id="password" class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none" placeholder="••••••••" style="--tw-ring-color: #2196f3; border-color: inherit;" type="password" required/>
 </div>
 </div>
-<!-- Confirm Password -->
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface ml-1">Confirmar contraseña</label>
-<div class="relative flex items-center">
-<span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">lock_clock</span>
-<input class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none" placeholder="••••••••" style="--tw-ring-color: #2196f3; border-color: inherit;" type="password"/>
-</div>
-</div>
-<!-- Terms -->
-<div class="flex items-start gap-3 px-1">
-<input class="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" id="terms" style="--tw-ring-color: #2196f3; border-color: inherit;" type="checkbox"/>
-<label class="font-body-md text-body-md text-on-surface-variant leading-tight" for="terms">
-                        Acepto los <span class="text-primary font-semibold" style="color: #2196f3;">Términos de servicio</span> y la <span class="text-primary font-semibold" style="color: #2196f3;">Política de privacidad</span>.
-                    </label>
-</div>
-<!-- Primary Button -->
-<button class="w-full bg-primary-container text-on-primary-container font-headline-sm text-headline-sm py-4 rounded-full fab-shadow hover:brightness-110 active:scale-[0.98] transition-all duration-200" style="background-color: #2196f3; color: #ffffff;" type="submit">
-                    Registrarse
-                </button>
+
+<!-- Submit Button -->
+<button type="submit" class="w-full py-3 bg-primary text-white font-label-md rounded-lg shadow-md hover:bg-opacity-90 transition-all font-bold" style="background-color: #2196f3;">
+    Crear Cuenta
+</button>
 </form>
-<!-- Separator -->
-<div class="relative my-8 text-center">
-<hr class="border-outline-variant"/>
-<span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface-container-lowest px-4 font-label-md text-label-md text-on-surface-variant">O regístrate con</span>
-</div>
-<!-- Social Login Buttons -->
-<div class="grid grid-cols-2 gap-4">
-<button class="flex items-center justify-center gap-2 border border-outline-variant rounded-lg py-3 hover:bg-surface-container-high transition-colors active:scale-95 duration-150">
-<svg class="w-5 h-5" viewbox="0 0 24 24">
-<path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037a19.736 19.736 0 0 0-4.885 1.515a.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.196.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.419-2.157 2.419z" fill="#5865F2"></path>
-</svg>
-<span class="font-label-md text-label-md text-on-surface">Discord</span>
-</button>
-<button class="flex items-center justify-center gap-2 border border-outline-variant rounded-lg py-3 hover:bg-surface-container-high transition-colors active:scale-95 duration-150">
-<svg class="w-5 h-5" viewbox="0 0 48 48">
-<path d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" fill="#FFC107"></path>
-<path d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" fill="#FF3D00"></path>
-<path d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" fill="#4CAF50"></path>
-<path d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571l.001-.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" fill="#1976D2"></path>
-</svg>
-<span class="font-label-md text-label-md text-on-surface">Google</span>
-</button>
-</div>
-</div>
-<!-- Footer Link -->
-<div class="mt-8 text-center pb-8">
-<p class="font-body-md text-body-md text-on-surface-variant">
-                ¿Ya tienes cuenta? <a class="text-primary font-bold hover:underline" href="#" style="color: #2196f3;">Inicia sesión</a>
-</p>
 </div>
 </main>
-<!-- Subtle atmospheric background patterns (not SVGs or heavy blobs) -->
-<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-<div class="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] bg-primary opacity-[0.03] rounded-full blur-[80px]"></div>
-<div class="absolute bottom-[5%] left-[-20%] w-[500px] h-[500px] bg-secondary-container opacity-[0.05] rounded-full blur-[100px]"></div>
-</div>
-<!-- Micro-interaction Script -->
+
+<!-- 1. Carga correcta de la librería SDK oficial de Supabase -->
+<script src="https://jsdelivr.net"></script>
+
+<!-- 2. Conexión e interactividad lógica -->
 <script>
-        // Toggle password visibility functionality
-        document.querySelectorAll('.material-symbols-outlined').forEach(icon => {
-            if (icon.innerText === 'visibility' || icon.innerText === 'visibility_off') {
-                icon.addEventListener('click', function() {
-                    const input = this.previousElementSibling;
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                        this.innerText = 'visibility_off';
-                    } else {
-                        input.type = 'password';
-                        this.innerText = 'visibility';
-                    }
-                });
+    // Credenciales del proyecto GamersPro en Supabase
+    const SUPABASE_URL = "https://zrrpjbqduwtaxsft.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_7sOPZc2sJT4jExW3gAREgA_GBpRe6Rp"; 
+
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Escuchar el envío del formulario de registro
+    document.getElementById('registro-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Registro en Supabase Auth
+        const { data, error } = await supabaseClient.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    full_name: username
+                }
             }
         });
 
-        // Simple form focus highlights
-        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.querySelector('.material-symbols-outlined').classList.add('text-primary');
-                input.parentElement.querySelector('.material-symbols-outlined').classList.remove('text-outline');
-            });
-            input.addEventListener('blur', () => {
-                input.parentElement.querySelector('.material-symbols-outlined').classList.remove('text-primary');
-                input.parentElement.querySelector('.material-symbols-outlined').classList.add('text-outline');
-            });
-        });
-    </script>
-</body></html>
+        if (error) {
+            alert("Error en el registro: " + error.message);
+        } else {
+            alert("¡Cuenta creada con éxito! Por favor, revisa tu correo electrónico para confirmarla.");
+            window.location.href = "https://vnzlanick.github.io/GamersPro/";
+        }
+    });
+</script>
+</body>
+</html>
