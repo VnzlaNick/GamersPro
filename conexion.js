@@ -1,19 +1,23 @@
-// 1. Configuración de credenciales de Supabase para GamersPro
-// Remplaza estas dos cadenas por tus claves reales de Supabase (Settings -> API)
-const SUPABASE_URL = "https://zrrpjbqduwtaxsfbsuum.supabase.co/rest/v1/"; 
-const SUPABASE_ANON_KEY = "sb_publishable_7sOPZc2sJT4jExW3gAREgA_GBpRe6Rp";
+// 1. Configuración de tus credenciales reales de Supabase
+const SUPABASE_URL = "https://supabase.co"; // Pon tu URL real
+const SUPABASE_ANON_KEY = "tu-clave-anonima-publica";   // Pon tu clave anon real
 
-// 2. Inicializar el cliente global de Supabase
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// CORRECCIÓN CLAVE: Usamos 'supabase.createClient' con la 's' minúscula de la librería
+// pero guardamos el resultado en una constante para exportar.
+const supabaseUrl = SUPABASE_URL;
+const supabaseKey = SUPABASE_ANON_KEY;
 
-// 3. EXPORTAR la instancia para que tus otros archivos la puedan usar
+// Inicializamos usando el objeto global que carga el script del CDN
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+// Exportamos la herramienta lista para usar
 export { supabase };
 
-// 4. Función global para registrar posts de usuarios invitados sin login
+// Función global encargada de enviar la información desde el formulario
 async function publicarMensajeAnonimo(tituloPost, contenidoPost, categoriaPost) {
   try {
     const { data, error } = await supabase
-      .from('posts') // El nombre exacto de la tabla que creaste en Supabase
+      .from('posts')
       .insert([
         { 
           title: tituloPost, 
@@ -26,7 +30,7 @@ async function publicarMensajeAnonimo(tituloPost, contenidoPost, categoriaPost) 
     if (error) throw error;
 
     alert("¡Post creado con éxito en GamersPro!");
-    window.location.href = "index.html"; // Te redirige al foro principal
+    window.location.href = "index.html"; // Nos regresa a la página principal
     
   } catch (error) {
     console.error("Error crítico al insertar en Supabase:", error.message);
@@ -34,6 +38,5 @@ async function publicarMensajeAnonimo(tituloPost, contenidoPost, categoriaPost) 
   }
 }
 
-// Hacer la función accesible desde los formularios HTML
+// Hacer la función accesible de forma global para los scripts HTML
 window.publicarMensajeAnonimo = publicarMensajeAnonimo;
-
