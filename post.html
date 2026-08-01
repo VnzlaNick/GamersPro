@@ -198,15 +198,27 @@
     <div class="mb-6">
      <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2" for="post-title">Título</label> <input class="w-full bg-transparent border-0 border-b border-white/10 focus:border-primary focus:ring-0 text-xl font-bold py-3 placeholder:text-white/20 transition-colors" id="post-title" placeholder="Título descriptivo..." type="text">
     </div>
-    <div class="mb-6">
+       <div class="mb-6">
      <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2" for="post-category">Categoría</label>
      <div class="relative">
-      <select class="w-full bg-surface-container-low border border-white/10 rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none appearance-none" id="post-category"> <option value="anuncios">Anuncios</option> <option value="torneos">Torneos</option> <option value="discusion">Discusión General</option> <option value="guias">Guías</option> <option value="hardware">Hardware</option> </select>
+      <select class="w-full bg-surface-container-low border border-white/10 rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none appearance-none" id="post-category"> 
+        <!-- Mantienes tus opciones anteriores -->
+        <option value="anuncios">Anuncios</option> 
+        <option value="torneos">Torneos</option> 
+        <option value="discusion">Discusión General</option> 
+        <option value="guias">Guías</option> 
+        <option value="hardware">Hardware</option> 
+        
+        <!-- AGREGAMOS LAS DOS NUEVAS CATEGORÍAS SINCRONIZADAS -->
+        <option value="servidores_mu">Servidores Mu</option>
+        <option value="rakion">Rakion</option>
+      </select>
       <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-on-surface-variant">
        <span class="material-symbols-outlined">expand_more</span>
       </div>
      </div>
     </div>
+
     <!-- Content Area -->
     <div class="mb-6">
      <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Contenido</label>
