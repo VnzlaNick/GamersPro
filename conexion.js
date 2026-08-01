@@ -1,6 +1,6 @@
 // 1. Configuración de tus credenciales reales de Supabase
-const SUPABASE_URL = "https://supabase.co"; // Pon tu URL real
-const SUPABASE_ANON_KEY = "tu-clave-anonima-publica";   // Pon tu clave anon real
+const SUPABASE_URL = "https://zrrpjbqduwtaxsfbsuum.supabase.co/rest/v1/"; // Pon tu URL real
+const SUPABASE_ANON_KEY = "sb_publishable_7sOPZc2sJT4jExW3gAREgA_GBpRe6Rp";   // Pon tu clave anon real
 
 // CORRECCIÓN CLAVE: Usamos 'supabase.createClient' con la 's' minúscula de la librería
 // pero guardamos el resultado en una constante para exportar.
