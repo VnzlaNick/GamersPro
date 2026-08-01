@@ -1,7 +1,7 @@
 // 1. Configuración de credenciales de Supabase para GamersPro
 // Remplaza estas dos cadenas por tus claves reales de Supabase (Settings -> API)
-const SUPABASE_URL = "https://tu-proyecto.supabase.co"; 
-const SUPABASE_ANON_KEY = "tu-clave-anonima-publica";
+const SUPABASE_URL = "https://zrrpjbqduwtaxsfbsuum.supabase.co/rest/v1/"; 
+const SUPABASE_ANON_KEY = "sb_publishable_7sOPZc2sJT4jExW3gAREgA_GBpRe6Rp";
 
 // 2. Inicializar el cliente global de Supabase
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
