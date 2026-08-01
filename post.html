@@ -250,123 +250,132 @@
  
  
  
- <!-- ========================================== -->
-<!-- CONEXIÓN COMPLETA A SUPABASE (SIN TOCAR DISEÑO) -->
-<!-- ========================================== -->
+ 
+ 
+  <!-- ========================================== -->
+  <!-- CONEXIÓN COMPLETA A SUPABASE (SIN TOCAR DISEÑO) -->
+  <!-- ========================================== -->
 
-<!-- 1. Cargamos la librería OFICIAL de Supabase antes de tus funciones -->
-<script src="https://jsdelivr.net"></script>
+  <!-- 1. Cargamos la librería oficial de Supabase antes de tus funciones -->
+  <script src="https://jsdelivr.net"></script>
 
-<script type="module">
-  // 2. Importamos la instancia de Supabase desde tu archivo central
-  import { supabase } from './conexion.js';
+  <script type="module">
+    // 2. Importamos la instancia de Supabase desde tu archivo central
+    import { supabase } from './conexion.js';
 
-  // Hacer las funciones nativas accesibles globalmente desde el HTML
-  window.toggleDrawer = toggleDrawer;
-  window.handlePublish = handlePublish;
-  window.handleSaveDraft = handleSaveDraft;
-  window.clearUpload = clearUpload;
+    // Hacer las funciones nativas accesibles globalmente desde el HTML
+    window.toggleDrawer = toggleDrawer;
+    window.handlePublish = handlePublish;
+    window.handleSaveDraft = handleSaveDraft;
+    window.clearUpload = clearUpload;
 
-  function toggleDrawer() {
-      const drawer = document.getElementById('side-drawer');
-      const backdrop = document.getElementById('drawer-backdrop');
-      drawer.classList.toggle('-translate-x-full');
-      backdrop.classList.toggle('opacity-0');
-      backdrop.classList.toggle('opacity-100');
-      backdrop.classList.toggle('pointer-events-none');
-      backdrop.classList.toggle('pointer-events-auto');
-  }
+    function toggleDrawer() {
+        const drawer = document.getElementById('side-drawer');
+        const backdrop = document.getElementById('drawer-backdrop');
+        if (drawer && backdrop) {
+            drawer.classList.toggle('-translate-x-full');
+            backdrop.classList.toggle('opacity-0');
+            backdrop.classList.toggle('opacity-100');
+            backdrop.classList.toggle('pointer-events-none');
+            backdrop.classList.toggle('pointer-events-auto');
+        }
+    }
 
-  // 3. Modificamos la función para que envíe los datos reales a Supabase
-  async function handlePublish() {
-      const title = document.getElementById('post-title').value;
-      const category = document.getElementById('post-category').value;
-      const content = document.getElementById('post-content').value;
-      
-      if(!title.trim() || !content.trim()) {
-          if (window.confirm('Falta información. ¿Quieres completar el post ahora?')) {
-              return;
-          }
-          return;
-      }
-      
-      try {
-          // Insertamos la información capturada en tu tabla 'posts'
-          const { error } = await supabase
-              .from('posts')
-              .insert([
-                  {
-                      title: title,
-                      content: content,
-                      category: category,
-                      author: "Invitado Anónimo" // Forzado para no registrados
-                  }
-              ]);
+    // 3. Modificamos la función para que envíe los datos reales a Supabase
+    async function handlePublish() {
+        const title = document.getElementById('post-title').value;
+        const category = document.getElementById('post-category').value;
+        const content = document.getElementById('post-content').value;
+        
+        if(!title.trim() || !content.trim()) {
+            if (window.confirm('Falta información. ¿Quieres completar el post ahora?')) {
+                return;
+            }
+            return;
+        }
+        
+        try {
+            // Insertamos la información capturada en tu tabla 'posts'
+            const { error } = await supabase
+                .from('posts')
+                .insert([
+                    {
+                        title: title,
+                        content: content,
+                        category: category,
+                        author: "Invitado Anónimo" // Forzado para no registrados
+                    }
+                ]);
 
-          if (error) throw error;
+            if (error) throw error;
 
-          alert('¡Éxito! Tu post ha sido publicado correctamente en GamersPro.');
-          window.location.href = "index.html"; // Regresa al foro de inmediato
-          
-      } catch (err) {
-          console.error("Error al publicar en Supabase:", err.message);
-          alert("No se pudo subir a la base de datos: " + err.message);
-      }
-  }
+            alert('¡Éxito! Tu post ha sido publicado correctamente en GamersPro.');
+            window.location.href = "index.html"; // Regresa al foro de inmediato
+            
+        } catch (err) {
+            console.error("Error al publicar en Supabase:", err.message);
+            alert("No se pudo subir a la base de datos: " + err.message);
+        }
+    }
 
-  function handleSaveDraft() {
-      const title = document.getElementById('post-title').value;
-      if(title) {
-          alert('Borrador "' + title + '" guardado en el almacenamiento local del dispositivo.');
-      } else {
-          alert('Borrador guardado localmente.');
-      }
-  }
+    function handleSaveDraft() {
+        const title = document.getElementById('post-title').value;
+        if(title) {
+            alert('Borrador "' + title + '" guardado en el almacenamiento local del dispositivo.');
+        } else {
+            alert('Borrador guardado localmente.');
+        }
+    }
 
-  // Manejo de carga de archivos (Se mantiene intacto tu código)
-  const imageInput = document.getElementById('image-upload');
-  const videoInput = document.getElementById('video-upload');
-  const feedbackArea = document.getElementById('upload-feedback');
-  const feedbackText = document.getElementById('feedback-text');
-  const feedbackIcon = document.getElementById('feedback-icon');
+    // CORRECCIÓN CRÍTICA: Manejo seguro de carga de archivos nativos
+    const imageInput = document.getElementById('image-upload');
+    const videoInput = document.getElementById('video-upload');
+    const feedbackArea = document.getElementById('upload-feedback');
+    const feedbackText = document.getElementById('feedback-text');
+    const feedbackIcon = document.getElementById('feedback-icon');
 
-  if(imageInput) {
-      imageInput.addEventListener('change', function() {
-          if (this.files && this.files[0]) { showFeedback(this.files[0].name, 'image'); }
-      });
-  }
+    if (imageInput) {
+        imageInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) { 
+                showFeedback(this.files[0].name, 'image'); 
+            }
+        });
+    }
 
-  if(videoInput) {
-      videoInput.addEventListener('change', function() {
-          if (this.files && this.files[0]) { showFeedback(this.files[0].name, 'videocam'); }
-      });
-  }
+    if (videoInput) {
+        videoInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) { 
+                showFeedback(this.files[0].name, 'videocam'); 
+            }
+        });
+    }
 
-  function showFeedback(name, icon) {
-      feedbackArea.classList.remove('hidden');
-      feedbackText.innerText = name;
-      feedbackIcon.innerText = icon;
-  }
+    function showFeedback(name, icon) {
+        if (feedbackArea && feedbackText && feedbackIcon) {
+            feedbackArea.classList.remove('hidden');
+            feedbackText.innerText = name;
+            feedbackIcon.innerText = icon;
+        }
+    }
 
-  function clearUpload() {
-      if(imageInput) imageInput.value = '';
-      if(videoInput) videoInput.value = '';
-      feedbackArea.classList.add('hidden');
-  }
+    function clearUpload() {
+        if(imageInput) imageInput.value = '';
+        if(videoInput) videoInput.value = '';
+        if(feedbackArea) feedbackArea.classList.add('hidden');
+    }
 
-  // Simulación de auto-guardado
-  const contentTextarea = document.getElementById('post-content');
-  if (contentTextarea) {
-      let timeout = null;
-      contentTextarea.addEventListener('input', () => {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => {
-              console.log('Sincronizando borrador de forma nativa...');
-          }, 1000);
-      });
-  }
-</script>
-</body>
+    // Simulación de auto-guardado
+    const contentTextarea = document.getElementById('post-content');
+    if (contentTextarea) {
+        let timeout = null;
+        contentTextarea.addEventListener('input', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                console.log('Sincronizando borrador de forma nativa...');
+            }, 1000);
+        });
+    }
+  </script>
+ </body>
 </html>
 
- 
