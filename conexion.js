@@ -2,13 +2,19 @@
 const SUPABASE_URL = "https://zrrpjbqduwtaxsfbsuum.supabase.co/rest/v1/"; // Pon tu URL real
 const SUPABASE_ANON_KEY = "sb_publishable_7sOPZc2sJT4jExW3gAREgA_GBpRe6Rp";   // Pon tu clave anon real
 
-// CORRECCIÓN CLAVE: Usamos 'supabase.createClient' con la 's' minúscula de la librería
-// pero guardamos el resultado en una constante para exportar.
+
+// Asegúrate de que las líneas del medio de tu archivo queden así:
 const supabaseUrl = SUPABASE_URL;
 const supabaseKey = SUPABASE_ANON_KEY;
 
-// Inicializamos usando el objeto global que carga el script del CDN
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+// Inicializamos usando la librería oficial de Supabase
+export const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+
+
+
+
+
 
 // Exportamos la herramienta lista para usar
 export { supabase };
