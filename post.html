@@ -254,12 +254,11 @@
    <!-- ========================================== -->
   <!-- CONEXIÓN COMPLETA A SUPABASE (SIN TOCAR DISEÑO) -->
   <!-- ========================================== -->
-
-  <!-- 1. CORREGIDO: Cargamos la librería oficial de Supabase con su enlace completo -->
+  
+  <!--  Corregido: Solo cambiamos esta línea por el motor real -->
   <script src="https://jsdelivr.net"></script>
 
   <script type="module">
-    // 2. Importamos la instancia de Supabase desde tu archivo central
     import { supabase } from './conexion.js';
 
     // Hacer las funciones nativas accesibles globalmente desde el HTML
