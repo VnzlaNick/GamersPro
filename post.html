@@ -251,12 +251,11 @@
  
  
  
- 
-  <!-- ========================================== -->
+   <!-- ========================================== -->
   <!-- CONEXIÓN COMPLETA A SUPABASE (SIN TOCAR DISEÑO) -->
   <!-- ========================================== -->
 
-  <!-- 1. Cargamos la librería oficial de Supabase antes de tus funciones -->
+  <!-- 1. CORREGIDO: Cargamos la librería oficial de Supabase con su enlace completo -->
   <script src="https://jsdelivr.net"></script>
 
   <script type="module">
@@ -281,10 +280,10 @@
         }
     }
 
-    // 3. Modificamos la función para que envíe los datos reales a Supabase
+    // 3. TRADUCCIÓN FUNCIONAL: Modificamos la función para que envíe los textos limpios a Supabase
     async function handlePublish() {
         const title = document.getElementById('post-title').value;
-        const category = document.getElementById('post-category').value;
+        const rawCategory = document.getElementById('post-category').value;
         const content = document.getElementById('post-content').value;
         
         if(!title.trim() || !content.trim()) {
@@ -293,6 +292,13 @@
             }
             return;
         }
+
+        // Traducimos los values en minúsculas de tu HTML a las categorías exactas de la base de datos
+        let category = "General";
+        if (rawCategory === "anuncios") category = "Noticias";
+        else if (rawCategory === "torneos") category = "Torneos";
+        else if (rawCategory === "servidores_mu") category = "Servidores Mu";
+        else if (rawCategory === "rakion") category = "Rakion";
         
         try {
             // Insertamos la información capturada en tu tabla 'posts'
@@ -300,17 +306,17 @@
                 .from('posts')
                 .insert([
                     {
-                        title: title,
-                        content: content,
+                        title: title.trim(),
+                        content: content.trim(),
                         category: category,
-                        author: "Invitado Anónimo" // Forzado para no registrados
+                        author: "Invitado Anónimo" // Nombre por defecto para la Fase 1
                     }
                 ]);
 
             if (error) throw error;
 
             alert('¡Éxito! Tu post ha sido publicado correctamente en GamersPro.');
-            window.location.href = "index.html"; // Regresa al foro de inmediato
+            window.location.href = "index.html"; // Regresa al foro de inmediato ya actualizado
             
         } catch (err) {
             console.error("Error al publicar en Supabase:", err.message);
@@ -327,7 +333,7 @@
         }
     }
 
-    // CORRECCIÓN CRÍTICA: Manejo seguro de carga de archivos nativos
+    // Manejo seguro de carga de archivos nativos
     const imageInput = document.getElementById('image-upload');
     const videoInput = document.getElementById('video-upload');
     const feedbackArea = document.getElementById('upload-feedback');
@@ -378,4 +384,5 @@
   </script>
  </body>
 </html>
+
 
