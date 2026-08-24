@@ -372,7 +372,7 @@
         <span class="material-symbols-outlined text-[14px]">chat_bubble</span> 
         
         <!-- 🚀 AQUÍ: Quitamos los spans extras y dejamos solo el id="feed-mu" -->
-        <span id="feed-mu" class="truncate">Cargando último tema...</span>
+        <span id="feed-rakion" class="truncate">Cargando último tema...</span>
        </div>
       </div>
      </a>
@@ -474,20 +474,16 @@
 <!-- Bottom Navigation Bar -->
  <nav class="fixed bottom-0 left-0 right-0 bg-blue backdrop-blur-md border-t border-poral-border px-4 py-1 flex justify-between items-center z-[80] pb-2">
 
-  <button class="flex flex-col items-center gap-1 text-portal-text-muted"><span class="material-symbols-outlined text-[24px]">home</span> <span class="text-[10px] font-bold">Inicio</span></button>
+    <button class="flex flex-col items-center gap-1 text-portal-text-muted"><span class="material-symbols-outlined text-[24px]">home</span> <span class="text-[10px] font-bold">Inicio</span></button>
    <button class="flex flex-col items-center gap-1 text-portal-text-muted"><span class="material-symbols-outlined text-[24px]">volunteer_activism</span> <span class="text-[10px] font-bold">Donar</span></button>
    <div class="relative">
-    <!-- FAB -->
-    <a class="fixed bottom-6 right-margin-mobile w-14 h-14 bg-brand-blue rounded-full shadow-lg shadow-brand-blue/30 flex items-center justify-center text-white active:scale-90 duration-150 z-50 transition-transform" href="post.html"> </a>
+    <!-- FAB CON ID FUNCIONAL ASIGNADO -->
     <div class="bg-portal-blue w-14 h-14 rounded-full -mt-12 flex items-center justify-center shadow-lg border-4 border-portal-bg">
-     <a class="fixed bottom-6 right-margin-mobile w-14 h-14 bg-brand-blue rounded-full shadow-lg shadow-brand-blue/30 flex items-center justify-center text-white active:scale-90 duration-150 z-50 transition-transform" href="post.html"> <span class="material-symbols-outlined text-[32px] font-bold" data-icon="add">add</span> </a>
+     <a id="btn-abrir-formulario" class="fixed bottom-6 right-margin-mobile w-14 h-14 bg-brand-blue rounded-full shadow-lg shadow-brand-blue/30 flex items-center justify-center text-white active:scale-90 duration-150 z-50 transition-transform" href="post.html"> <span class="material-symbols-outlined text-[32px] font-bold" data-icon="add">add</span> </a>
     </div>
    </div>
    <button class="flex flex-col items-center gap-1 text-portal-text-muted"><span class="material-symbols-outlined text-[24px]">sports_esports</span> <span class="text-[10px] font-bold">Rangos</span></button>
    <button class="flex flex-col items-center gap-1 text-portal-text-muted"><span class="material-symbols-outlined text-[24px]">person</span> <span class="text-[10px] font-bold">Perfil</span></button>
-</a>
-</div>
-</nav>
 
 
 <!-- Importar cliente oficial de Supabase -->
@@ -496,16 +492,71 @@
 <!-- Tu script de lógica (asegúrate de que vaya abajo de la librería) -->
 <script src="js/app.js"></script>
 
+<!-- ======================================================== -->
+<!-- 🛠️ EL FORMULARIO FLOTANTE (MODAL NEÓN) PARA CREAR POSTS -->
+<!-- ======================================================== -->
+<div id="modal-post" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+  <div class="bg-portal-bg border border-portal-border rounded-2xl w-full max-w-md p-5 flex flex-col gap-4 shadow-2xl">
+    
+    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+      <h3 class="font-bold text-base text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-portal-blue">add_box</span> Nuevo Tema Gamer
+      </h3>
+      <button id="btn-cerrar-modal" class="text-portal-text-muted hover:text-white transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <form id="form-nuevo-post" class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[11px] font-bold text-portal-text-muted uppercase tracking-wider">Tu Apodo / GamerTag</label>
+        <input type="text" id="input-username" class="w-full bg-white/5 border border-white/10 rounded-lg p-2 text-sm text-white focus:ring-1 focus:ring-portal-blue outline-none" placeholder="Ej: GamersPj" required />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[11px] font-bold text-portal-text-muted uppercase tracking-wider">Categoría del Foro</label>
+        <select id="select-tag" class="w-full bg-portal-bg border border-white/10 rounded-lg p-2 text-sm text-white focus:ring-1 focus:ring-portal-blue outline-none">
+          <option value="Noticias">Noticias y Anuncios</option>
+          <option value="Torneos">Torneos</option>
+          <option value="Servidores Mu">Servidores Mu</option>
+          <option value="Rakion">Rakion</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[11px] font-bold text-portal-text-muted uppercase tracking-wider">Título de la Publicación</label>
+        <input type="text" id="input-title" class="w-full bg-white/5 border border-white/10 rounded-lg p-2 text-sm text-white focus:ring-1 focus:ring-portal-blue outline-none" placeholder="Ej: Busco gente para levear" required />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-[11px] font-bold text-portal-text-muted uppercase tracking-wider">Contenido del Mensaje</label>
+        <textarea id="input-content" rows="4" class="w-full bg-white/5 border border-white/10 rounded-lg p-2 text-sm text-white focus:ring-1 focus:ring-portal-blue outline-none resize-none" placeholder="Escribe los detalles aquí..." required></textarea>
+      </div>
+
+      <button type="submit" class="w-full bg-portal-blue text-white font-bold py-2.5 rounded-lg shadow-lg active:scale-95 transition-transform uppercase text-[12px] tracking-wider mt-2">
+        Publicar Tema 🚀
+      </button>
+    </form>
+  </div>
+</div>
+
 <!-- ========================================== -->
 <!-- PASO 1: CARGAR POSTS DE SUPABASE AL INICIO -->
 <!-- ========================================== -->
 
-<!-- 1. Cargamos el motor oficial de Supabase (si no lo tenías ya en index.html) -->
-<script src="https://jsdelivr.net"></script>
-
-<!-- 2. Lógica funcional para descargar y listar los posts con forEach -->
 <script type="module">
   import { supabase } from './conexion.js';
+
+  // Funciones para abrir y cerrar la ventana flotante
+  function abrirModalPost() {
+    const modal = document.getElementById('modal-post');
+    if (modal) modal.classList.remove('hidden');
+  }
+
+  function cerrarModalPost() {
+    const modal = document.getElementById('modal-post');
+    if (modal) modal.classList.add('hidden');
+  }
 
   // Forzar que las funciones nativas de tu menú sigan funcionando si se importan módulos
   if (typeof window.toggleDrawer !== 'function') {
@@ -522,10 +573,9 @@
       }
   }
 
-  // Función encargada de conectarse a internet y descargar las publicaciones
+  // Función encargada de conectarse a internet y clasificar las publicaciones en tus categorías fijas
   async function cargarMuroDelForo() {
     try {
-      // Solicitamos a Supabase que nos traiga todos los campos ordenados por fecha reciente
       const { data: listadoPosts, error } = await supabase
         .from('posts')
         .select('*')
@@ -533,60 +583,101 @@
 
       if (error) throw error;
 
-      // Buscamos el contenedor HTML de tu feed. 
-      // NOTA: Asegúrate de revisar tu index.html y ponerle id="muro-feed" a la sección o div donde se listan tus posts fijos
-      const contenedorFeed = document.getElementById('muro-feed');
-      if (!contenedorFeed) {
-         console.warn("No se encontró el contenedor id='muro-feed' en el HTML.");
-         return;
+      const ultimosPostsPorCategoria = {};
+
+      // Al estar ordenados por fecha descendente, el primero de cada categoría es el más nuevo
+      listadoPosts.forEach(post => {
+        if (!ultimosPostsPorCategoria[post.category]) {
+          ultimosPostsPorCategoria[post.category] = post;
+        }
+      });
+
+      // Actualizar Noticias en tu index.html
+      if (ultimosPostsPorCategoria['Noticias']) {
+        const postNoticia = ultimosPostsPorCategoria['Noticias'];
+        const elNoticia = document.getElementById('feed-noticias');
+        if (elNoticia) elNoticia.innerHTML = `${postNoticia.title} <span class="text-portal-blue font-medium">@${postNoticia.author || 'Anónimo'}</span>`;
       }
 
-      // Limpiamos los posts estáticos de prueba para poner los reales de la base de datos
-      contenedorFeed.innerHTML = "";
+      // Actualizar Torneos en tu index.html
+      if (ultimosPostsPorCategoria['Torneos']) {
+        const postTorneo = ultimosPostsPorCategoria['Torneos'];
+        const elTorneo = document.getElementById('feed-torneos');
+        if (elTorneo) elTorneo.innerHTML = `${postTorneo.title} <span class="text-portal-blue font-medium">@${postTorneo.author || 'Anónimo'}</span>`;
+      }
 
-      // Usamos el bucle forEach para recorrer cada fila descargada una por una
-      listadoPosts.forEach(post => {
-        // Formateamos la fecha de manera sencilla
-        const fecha = post.created_at ? new Date(post.created_at).toLocaleDateString() : 'Reciente';
+      // Actualizar Servidores Mu en tu index.html
+      if (ultimosPostsPorCategoria['Servidores Mu']) {
+        const postMu = ultimosPostsPorCategoria['Servidores Mu'];
+        const elMu = document.getElementById('feed-mu');
+        if (elMu) elMu.innerHTML = `${postMu.title} <span class="text-portal-blue font-medium">@${postMu.author || 'Anónimo'}</span>`;
+      }
 
-        // Inyectamos el HTML dinámicamente usando las clases estéticas de GamersPro
-        contenedorFeed.innerHTML += `
-          <article class="bg-surface-container-lowest border border-white/10 rounded-2xl p-5 shadow-lg mb-4 transition-all hover:scale-[1.01]">
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full">
-                ${post.category || 'General'}
-              </span>
-              <span class="text-xs text-on-surface-variant font-medium">${fecha}</span>
-            </div>
-            <h3 class="text-xl font-bold tracking-tight text-on-background mb-2">
-              ${post.title}
-            </h3>
-            <p class="text-on-surface-variant text-body-md mb-4 line-clamp-3">
-              ${post.content}
-            </p>
-            <div class="flex items-center gap-2 pt-3 border-t border-white/5 text-xs text-on-surface-variant font-semibold">
-              <span class="material-symbols-outlined text-[16px]">person</span>
-              <span>Por: ${post.author || 'Anónimo'}</span>
-            </div>
-          </article>
-        `;
-      });
+      // Actualizar Rakion en tu index.html
+      if (ultimosPostsPorCategoria['Rakion']) {
+        const postRakion = ultimosPostsPorCategoria['Rakion'];
+        const elRakion = document.getElementById('feed-rakion');
+        if (elRakion) elRakion.innerHTML = `${postRakion.title} <span class="text-portal-blue font-medium">@${postRakion.author || 'Anónimo'}</span>`;
+      }
 
     } catch (err) {
       console.error("Error al renderizar el muro:", err.message);
     }
   }
 
-  // Ejecutamos la función automáticamente en cuanto el navegador termine de cargar la interfaz
-  document.addEventListener('DOMContentLoaded', cargarMuroDelForo);
+  // Función encargada de recibir los datos del formulario y subirlos a Supabase
+  async function guardarPostEnSupabase(event) {
+    event.preventDefault();
+
+    const txtAuthor = document.getElementById('input-username').value.trim();
+    const txtCategory = document.getElementById('select-tag').value;
+    const txtTitle = document.getElementById('input-title').value.trim();
+    const txtContent = document.getElementById('input-content').value.trim();
+
+    const { error } = await supabase
+      .from('posts')
+      .insert([
+        { title: txtTitle, content: txtContent, author: txtAuthor, category: txtCategory }
+      ]);
+
+    if (error) {
+      alert("❌ Error al guardar el post: " + error.message);
+      return;
+    }
+
+    document.getElementById('form-nuevo-post').reset();
+    cerrarModalPost();
+
+    alert("🚀 ¡Post publicado con éxito en tu categoría!");
+    await cargarMuroDelForo(); // Recarga los textos automáticamente en la pantalla de inicio
+  }
+
+  // Enlazar todos los eventos al cargar el documento
+  document.addEventListener('DOMContentLoaded', () => {
+    cargarMuroDelForo();
+
+    // Conectar eventos del formulario de envíos
+    const formulario = document.getElementById('form-nuevo-post');
+    if (formulario) formulario.addEventListener('submit', guardarPostEnSupabase);
+
+    // Conectar botón de cerrar (X)
+    const btnCerrar = document.getElementById('btn-cerrar-modal');
+    if (btnCerrar) btnCerrar.addEventListener('click', cerrarModalPost);
+
+    // CONEXIÓN DIRECTA POR ID PARA TU BOTÓN "+"
+    const botonMas = document.getElementById('btn-abrir-formulario');
+    if (botonMas) {
+      botonMas.style.cursor = 'pointer';
+      botonMas.addEventListener('click', (e) => {
+        e.preventDefault(); // Anula el enlace hacia post.html
+        abrirModalPost();   // Despliega el formulario neón flotante
+      });
+    }
+  });
 </script>
 
-
-  </body>
-  
-  </html>
-  
-  
+</body>
+</html>
   
 
 
