@@ -544,7 +544,7 @@
 <!-- PASO 1: CARGAR POSTS DE SUPABASE AL INICIO -->
 <!-- ========================================== -->
 
-  <!-- LIBRERÍA DE SUPABASE -->
+<!-- LIBRERÍA DE SUPABASE -->
 <script src="https://jsdelivr.net"></script>
 
 <script>
@@ -553,9 +553,51 @@
   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpycnBqYnFkdXd0YXhzZmJzdXVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyNDY5NDYsImV4cCI6MjA5NzgyMjk0Nn0.nrm0_IUxJ_30uY5jEeA_J2NNfzA7wE0g4OO51NVsORc";
   const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // 2. FUNCIÓN PARA CARGAR EL ÚLTIMO TEMA DE TODAS LAS SECCIONES
+  const form = document.getElementById('gamerspro-form');
+
+  // ==========================================
+  // PARTE A: ENVIAR EL FORMULARIO (CUANDO EL USUARIO CREA UN POST)
+  // ==========================================
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nickname = document.getElementById('gamer-nickname').value;
+      const category = document.getElementById('gamer-category').value;
+      const title = document.getElementById('gamer-title').value;
+      const content = document.getElementById('gamer-content').value;
+
+      const { data, error } = await supabase
+        .from('posts')
+        .insert([{ 
+          title: title, 
+          content: content, 
+          nickname: nickname, 
+          category: category 
+        }]);
+
+      if (error) {
+        console.error("Error al publicar:", error.message);
+        alert("Hubo un error al publicar.");
+      } else {
+        alert("🎮 ¡Tema publicado con éxito!");
+        form.reset();
+        
+        // Redirección inteligente:
+        // Si publicó en Servidores Mu, va a zserve.html. Si no, recarga la página.
+        if (category === "Servidores Mu") {
+          window.location.href = "zserve.html"; 
+        } else {
+          location.reload();
+        }
+      }
+    });
+  }
+
+  // ==========================================
+  // PARTE B: LEER LOS DATOS (PARA MOSTRAR EL ÚLTIMO TEMA EN LA PÁGINA PRINCIPAL)
+  // ==========================================
   async function cargarFeedsPrincipales() {
-    // Traemos las publicaciones más recientes de la base de datos
     const { data: posts, error } = await supabase
       .from('posts')
       .select('title, category')
@@ -566,7 +608,6 @@
       return;
     }
 
-    // Listado de secciones configuradas en tu HTML y su equivalente en base de datos
     const secciones = [
       { idHtml: 'feed-mu', categoriaDb: 'Servidores Mu' },
       { idHtml: 'feed-noticias', categoriaDb: 'Noticias y Anuncios' },
@@ -574,12 +615,10 @@
       { idHtml: 'feed-rakion', categoriaDb: 'Rakion' }
     ];
 
-    // Procesamos cada sección de manera automática
     secciones.forEach(sec => {
       const elemento = document.getElementById(sec.idHtml);
-      if (!elemento) return; // Si no encuentra el ID en el HTML, continúa con el siguiente
+      if (!elemento) return; 
 
-      // Buscamos el post más reciente que pertenezca a esta categoría
       const ultimoPost = posts.find(p => p.category === sec.categoriaDb);
 
       if (ultimoPost) {
@@ -590,9 +629,10 @@
     });
   }
 
-  // Ejecutar cuando se cargue la página principal
+  // Ejecutar al cargar la página principal
   window.addEventListener('DOMContentLoaded', cargarFeedsPrincipales);
 </script>
+
   
         
  
