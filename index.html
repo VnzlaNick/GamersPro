@@ -551,7 +551,7 @@
   // 1. Tus credenciales de Supabase
   const SUPABASE_URL = "https://zrrpjbqduwtaxsfbsuum.supabase.co";
   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpycnBqYnFkdXd0YXhzZmJzdXVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyNDY5NDYsImV4cCI6MjA5NzgyMjk0Nn0.nrm0_IUxJ_30uY5jEeA_J2NNfzA7wE0g4OO51NVsORc";
-  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const form = document.getElementById('gamerspro-form');
 
