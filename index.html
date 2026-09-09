@@ -544,139 +544,61 @@
 <!-- PASO 1: CARGAR POSTS DE SUPABASE AL INICIO -->
 <!-- ========================================== -->
 
-<script type="module">
-  import { supabase } from './conexion.js';
+  <!-- LIBRERÍA DE SUPABASE -->
+<script src="https://jsdelivr.net"></script>
 
-  // Funciones para abrir y cerrar la ventana flotante
-  function abrirModalPost() {
-    const modal = document.getElementById('modal-post');
-    if (modal) modal.classList.remove('hidden');
-  }
+<script>
+  // 1. Tus credenciales de Supabase
+  const SUPABASE_URL = "https://zrrpjbqduwtaxsfbsuum.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpycnBqYnFkdXd0YXhzZmJzdXVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyNDY5NDYsImV4cCI6MjA5NzgyMjk0Nn0.nrm0_IUxJ_30uY5jEeA_J2NNfzA7wE0g4OO51NVsORc";
+  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  function cerrarModalPost() {
-    const modal = document.getElementById('modal-post');
-    if (modal) modal.classList.add('hidden');
-  }
-
-  // Forzar que las funciones nativas de tu menú sigan funcionando si se importan módulos
-  if (typeof window.toggleDrawer !== 'function') {
-      window.toggleDrawer = function() {
-          const drawer = document.getElementById('side-drawer');
-          const backdrop = document.getElementById('drawer-backdrop');
-          if (drawer && backdrop) {
-              drawer.classList.toggle('-translate-x-full');
-              backdrop.classList.toggle('opacity-0');
-              backdrop.classList.toggle('opacity-100');
-              backdrop.classList.toggle('pointer-events-none');
-              backdrop.classList.toggle('pointer-events-auto');
-          }
-      }
-  }
-
-  // Función encargada de conectarse a internet y clasificar las publicaciones en tus categorías fijas
-  async function cargarMuroDelForo() {
-    try {
-      const { data: listadoPosts, error } = await supabase
-        .from('posts')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-
-      const ultimosPostsPorCategoria = {};
-
-      // Al estar ordenados por fecha descendente, el primero de cada categoría es el más nuevo
-      listadoPosts.forEach(post => {
-        if (!ultimosPostsPorCategoria[post.category]) {
-          ultimosPostsPorCategoria[post.category] = post;
-        }
-      });
-
-      // Actualizar Noticias en tu index.html
-      if (ultimosPostsPorCategoria['Noticias']) {
-        const postNoticia = ultimosPostsPorCategoria['Noticias'];
-        const elNoticia = document.getElementById('feed-noticias');
-        if (elNoticia) elNoticia.innerHTML = `${postNoticia.title} <span class="text-portal-blue font-medium">@${postNoticia.author || 'Anónimo'}</span>`;
-      }
-
-      // Actualizar Torneos en tu index.html
-      if (ultimosPostsPorCategoria['Torneos']) {
-        const postTorneo = ultimosPostsPorCategoria['Torneos'];
-        const elTorneo = document.getElementById('feed-torneos');
-        if (elTorneo) elTorneo.innerHTML = `${postTorneo.title} <span class="text-portal-blue font-medium">@${postTorneo.author || 'Anónimo'}</span>`;
-      }
-
-      // Actualizar Servidores Mu en tu index.html
-      if (ultimosPostsPorCategoria['Servidores Mu']) {
-        const postMu = ultimosPostsPorCategoria['Servidores Mu'];
-        const elMu = document.getElementById('feed-mu');
-        if (elMu) elMu.innerHTML = `${postMu.title} <span class="text-portal-blue font-medium">@${postMu.author || 'Anónimo'}</span>`;
-      }
-
-      // Actualizar Rakion en tu index.html
-      if (ultimosPostsPorCategoria['Rakion']) {
-        const postRakion = ultimosPostsPorCategoria['Rakion'];
-        const elRakion = document.getElementById('feed-rakion');
-        if (elRakion) elRakion.innerHTML = `${postRakion.title} <span class="text-portal-blue font-medium">@${postRakion.author || 'Anónimo'}</span>`;
-      }
-
-    } catch (err) {
-      console.error("Error al renderizar el muro:", err.message);
-    }
-  }
-
-  // Función encargada de recibir los datos del formulario y subirlos a Supabase
-  async function guardarPostEnSupabase(event) {
-    event.preventDefault();
-
-    const txtAuthor = document.getElementById('input-username').value.trim();
-    const txtCategory = document.getElementById('select-tag').value;
-    const txtTitle = document.getElementById('input-title').value.trim();
-    const txtContent = document.getElementById('input-content').value.trim();
-
-    const { error } = await supabase
+  // 2. FUNCIÓN PARA CARGAR EL ÚLTIMO TEMA DE TODAS LAS SECCIONES
+  async function cargarFeedsPrincipales() {
+    // Traemos las publicaciones más recientes de la base de datos
+    const { data: posts, error } = await supabase
       .from('posts')
-      .insert([
-        { title: txtTitle, content: txtContent, author: txtAuthor, category: txtCategory }
-      ]);
+      .select('title, category')
+      .order('created_at', { ascending: false });
 
     if (error) {
-      alert("❌ Error al guardar el post: " + error.message);
+      console.error("Error al cargar feeds:", error.message);
       return;
     }
 
-    document.getElementById('form-nuevo-post').reset();
-    cerrarModalPost();
+    // Listado de secciones configuradas en tu HTML y su equivalente en base de datos
+    const secciones = [
+      { idHtml: 'feed-mu', categoriaDb: 'Servidores Mu' },
+      { idHtml: 'feed-noticias', categoriaDb: 'Noticias y Anuncios' },
+      { idHtml: 'feed-torneos', categoriaDb: 'Torneos' },
+      { idHtml: 'feed-rakion', categoriaDb: 'Rakion' }
+    ];
 
-    alert("🚀 ¡Post publicado con éxito en tu categoría!");
-    await cargarMuroDelForo(); // Recarga los textos automáticamente en la pantalla de inicio
+    // Procesamos cada sección de manera automática
+    secciones.forEach(sec => {
+      const elemento = document.getElementById(sec.idHtml);
+      if (!elemento) return; // Si no encuentra el ID en el HTML, continúa con el siguiente
+
+      // Buscamos el post más reciente que pertenezca a esta categoría
+      const ultimoPost = posts.find(p => p.category === sec.categoriaDb);
+
+      if (ultimoPost) {
+        elemento.innerHTML = `Último tema: <strong>${ultimoPost.title}</strong>`;
+      } else {
+        elemento.textContent = "No hay temas publicados aún.";
+      }
+    });
   }
 
-  // Enlazar todos los eventos al cargar el documento
-  document.addEventListener('DOMContentLoaded', () => {
-    cargarMuroDelForo();
-
-    // Conectar eventos del formulario de envíos
-    const formulario = document.getElementById('form-nuevo-post');
-    if (formulario) formulario.addEventListener('submit', guardarPostEnSupabase);
-
-    // Conectar botón de cerrar (X)
-    const btnCerrar = document.getElementById('btn-cerrar-modal');
-    if (btnCerrar) btnCerrar.addEventListener('click', cerrarModalPost);
-
-    // CONEXIÓN DIRECTA POR ID PARA TU BOTÓN "+"
-    const botonMas = document.getElementById('btn-abrir-formulario');
-    if (botonMas) {
-      botonMas.style.cursor = 'pointer';
-      botonMas.addEventListener('click', (e) => {
-        e.preventDefault(); // Anula el enlace hacia post.html
-        abrirModalPost();   // Despliega el formulario neón flotante
-      });
-    }
-  });
+  // Ejecutar cuando se cargue la página principal
+  window.addEventListener('DOMContentLoaded', cargarFeedsPrincipales);
 </script>
-
-</body>
+  
+        
+ 
+ 
+ 
+ </body>
 </html>
   
 
